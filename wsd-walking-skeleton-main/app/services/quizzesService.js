@@ -13,8 +13,16 @@ const randomSelectedQuestion = async () => {
 
 const listQuestions = async (tId) => {
     const rows = await sql`SELECT * FROM questions WHERE topic_id =${tId}`;
-  
     return rows;
 };
+
+const listAvailableTopics = async () => {
+    const rows = await sql`SELECT * FROM topics`;
+    return rows;
+};
+
   
-export { randomQuestionID, listQuestions, randomSelectedQuestion };
+export { randomQuestionID, 
+    listQuestions, 
+    randomSelectedQuestion, 
+    listAvailableTopics };

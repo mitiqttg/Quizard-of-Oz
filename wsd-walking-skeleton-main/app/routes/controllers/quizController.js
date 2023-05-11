@@ -57,11 +57,10 @@ const goQuiz = async ({ params, response }) => {
     response.redirect(`/quiz/${tId}/questions/${qId}`);
 };
 
-const listQuizzes = async ({ render, user }) => {
-  render("chores.eta", {
-    availableChores: await choreService.listAvailableChores(),
-    claimedChores: await choreService.listUserChores(user.id),
+const listTopics = async ({ render }) => {
+  render("quiz.eta", {
+    topics: await quizzesService.listAvailableTopics(),
   });
 };
 
-export { addChore, claimChore, goQuiz, listQuizzes };
+export { addChore, claimChore, goQuiz, listTopics };
