@@ -1,0 +1,13 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Practice application</h1>
+
+<p>This is a web application that is used for repeated practice of learned content. The application provides a list of topics and allows creating multiple-choice questions into those topics that are then answered by self and others.</p>
+
+<p>If you haven't used the application before, you can start by <a href="/auth/register">registering</a>. If you have been here before, just <a href="/auth/login">log in</a>!</p>
+
+<h1>Statistics!</h1>
+
+<p>Total number of topics: it.totalTopics</p>
+<p>Total number of questions: it.totalQuestions</p>
+<p>Total number of questions answers: it.totalAnswers</p>

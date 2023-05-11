@@ -1,0 +1,11 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Registration form</h1>
+
+<form method="POST" action="/auth/register">
+  Email:  <input type="email" name="email" /><br/>
+  Password:  <input type="password" name="password" /><br/>
+  <input type="submit" value="Register" />
+</form>
+
+<a href="/auth/login">Already registered? Login here.</a>
