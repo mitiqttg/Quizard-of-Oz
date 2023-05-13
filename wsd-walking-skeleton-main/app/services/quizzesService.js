@@ -7,8 +7,22 @@ const randomQuestionID = async (tId) => {
 };
 
 const randomSelectedQuestion = async () => {
-    const [questionId, questionText] = await sql`SELECT (id,question_text) FROM questions ORDER BY RAND() LIMIT 1`;
-    const [optionId,optionText] = await sql`SELECT (id,option_text) FROM questions WHERE question_id =${questionId}`;
+    const questionId = await sql`SELECT id FROM questions ORDER BY RAND() LIMIT 1`;
+    const questionText = await sql`SELECT question_text FROM questions WHERE question_id =${questionId}`;
+    // const optionId = await sql`SELECT id FROM question_answer_options WHERE question_id =${questionId}`;
+    // const optionText = await sql`SELECT option_text FROM question_answer_options WHERE question_id =${questionId}`;
+    // = [optionId,optionText] 
+    const ans = await sql`SELECT (id,option_text) FROM question_answer_options WHERE question_id =${questionId}`;
+    const arr = [];
+    ans.forEach((id,text) => {
+        arr.push(`{"optionId": ${id}, "optionText": ${text}}`)
+    });
+    const data = {
+        "questionId": questionId[0],
+        "questionText": questionText[0],
+        "answerOptions": arr
+    };
+    return data;
 };
 
 const listQuestions = async (tId) => {

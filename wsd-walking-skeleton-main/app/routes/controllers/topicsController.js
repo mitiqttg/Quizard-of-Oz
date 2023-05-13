@@ -1,66 +1,53 @@
-import * as choreService from "../../services/topicsService.js";
+import * as topicsService from "../../services/topicsService.js";
 import { validasaur } from "../../deps.js";
 
-const choreValidationRules = {
-  title: [validasaur.required, validasaur.minLength(1)],
-  description: [validasaur.required, validasaur.minLength(1)],
-  chorecoins: [validasaur.required, validasaur.isNumeric],
-  due_date: [validasaur.required, validasaur.isDate],
+const topicValidationRules = {
+  name: [validasaur.required, validasaur.minLength(1)],
+  // description: [validasaur.required, validasaur.minLength(1)],
+  // chorecoins: [validasaur.required, validasaur.isNumeric],
+  // due_date: [validasaur.required, validasaur.isDate],
 };
 
-const getChoreData = async (request) => {
+const getTopicData = async (request) => {
   const body = request.body({ type: "form" });
   const params = await body.value;
   return {
-    title: params.get("title"),
-    description: params.get("description"),
-    chorecoins: params.get("chorecoins"),
-    due_date: params.get("due_date"),
+    name: params.get("name"),
   };
 };
 
-const addChore = async ({ request, response, render, user }) => {
-  const choreData = await getChoreData(request);
+const addTopic = async ({ request, response, render, user }) => {
+  const topicData = await getTopicData(request);
 
   const [passes, errors] = await validasaur.validate(
-    choreData,
-    choreValidationRules,
+    topicData,
+    topicValidationRules,
   );
 
   if (!passes) {
     console.log(errors);
     choreData.validationErrors = errors;
-    render("chores.eta", choreData);
+    render("topicsList.eta", topicData);
   } else {
-    await choreService.addChore(
+    await topicsService.addTopic(
       user.id,
-      choreData.title,
-      choreData.description,
-      choreData.chorecoins,
-      choreData.due_date,
+      topicData.name,
     );
 
-    response.redirect("/chores");
+    response.redirect("/topics");
   }
 };
 
-const claimChore = async ({ params, response, user }) => {
-  await choreService.claimChore(params.id, user.id);
+const deleteTopic = async ({ params, response, user }) => {
+  await topicsService.deleteTopic(params.id, user.id);
 
-  response.redirect("/chores");
+  response.redirect("/topics");
 };
 
-const completeChore = async ({ params, response, user }) => {
-  await choreService.completeChore(params.id, user.id);
-
-  response.redirect("/chores");
-};
-
-const listChores = async ({ render, user }) => {
-  render("chores.eta", {
-    availableChores: await choreService.listAvailableChores(),
-    claimedChores: await choreService.listUserChores(user.id),
+const listTopics = async ({ render }) => {
+  render("topicsList.eta", {
+    totalTopics: await topicsService.listTopics(),
   });
 };
 
-export { addChore, claimChore, completeChore, listChores };
+export { addTopic, claimChore, completeChore, listTopics };

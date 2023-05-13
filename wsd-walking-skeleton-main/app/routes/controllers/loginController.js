@@ -21,7 +21,7 @@ const processLogin = async ({ request, response, state }) => {
       return;
     }   
     await state.session.set("user", user);
-    response.redirect("/chores");
+    response.redirect("/topics");
 };
 
 const showLoginForm = ({ render }) => {
