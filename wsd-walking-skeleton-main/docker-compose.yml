@@ -17,7 +17,7 @@ services:
       - project.env
 
   database:
-    container_name: database-server
+    container_name: database-server-mt
     image: postgres:14.1
     restart: "no"
     env_file:

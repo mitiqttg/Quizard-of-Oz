@@ -47,7 +47,8 @@ const deleteTopic = async ({ params, response, user }) => {
 const listTopics = async ({ render }) => {
   render("topicsList.eta", {
     totalTopics: await topicsService.listTopics(),
+    isAdmin: await topicsService.isAdmin(),
   });
 };
 
-export { addTopic, claimChore, completeChore, listTopics };
+export { addTopic, claimChore, deleteTopic, listTopics };

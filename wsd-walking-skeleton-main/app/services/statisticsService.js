@@ -5,11 +5,13 @@ const totalTopics = async () => {
 
   return rows[0];
 };
+
 const totalQuestions = async () => {
   const rows = await sql`SELECT COUNT(id) FROM questions`;
 
   return rows[0];
 };
+
 const totalAnswers = async () => {
   const rows = await sql`SELECT COUNT(id) FROM question_answers`;
 

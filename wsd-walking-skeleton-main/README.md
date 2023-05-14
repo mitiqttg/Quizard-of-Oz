@@ -5,10 +5,7 @@ assignments -- for the free online Web Software Development course available at
 [https://fitech101.aalto.fi/web-software-development/](https://fitech101.aalto.fi/web-software-development/).
 
 ## Contents
-
-The walking skeleton has a simple Deno application that starts on port `7777`.
-The application responds to queries with the message `Hello world!` and logging
-the contents of the database table `names` to the console.
+An application to create quizzes for practicing
 
 Launching the walking skeleton starts the Deno application, a PostgreSQL server,
 and a database migration process (Flyway).
@@ -24,21 +21,13 @@ The walking skeleton is used with Docker Compose.
   a new terminal and navigate to the folder that contains the
   `docker-compose.yml` file, and then write `docker-compose stop`.
 
-## Watching for changes
-
-The walking skeleton by default watches for changes in the Deno code and
-restarts the application whenever needed. There is a
-[bug](https://github.com/denoland/deno/issues/6966), however, that leads to this
-functionality not working in Windows Subsystem for Linux. When working with WSL,
-stop and start the container between changes.
-
 ## Database
 
 When the walking skeleton is up and running, you can access the PostgreSQL
 database from the terminal using the following command:
 
 ```
-docker exec -it database-server psql -U username database
+docker exec -it database-server-mt psql -U username database
 ```
 
 This opens up `psql` console, where you can write SQL commands.
@@ -95,12 +84,3 @@ To run E2E tests, launch the project using the following command:
 ```
 docker-compose run --entrypoint=npx e2e-playwright playwright test && docker-compose rm -sf
 ```
-
-Note! Once finished, this will also remove any changes to the database of your
-local project.
-
-What the e2e tests effectively do is that they start up a browser within the
-docker container and examine the application programmatically based on the
-tests.
-
-(This isn't yet discussed in the materials, but will be sooner or later!)
