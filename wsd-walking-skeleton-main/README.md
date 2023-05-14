@@ -83,4 +83,8 @@ To run E2E tests, launch the project using the following command:
 
 ```
 docker-compose run --entrypoint=npx e2e-playwright playwright test && docker-compose rm -sf
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 7ac4a70aae97b94a0a01687f58e66fffe1c47ac3
