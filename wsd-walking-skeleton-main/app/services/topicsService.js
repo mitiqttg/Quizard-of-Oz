@@ -12,14 +12,14 @@ const listTopics = async () => {
 };
 
 const deleteTopic = async (id) => {
-  await sql`DELETE * FROM topics WHERE id = ${id}`;
   const questionIDs = await sql`SELECT id FROM questions WHERE topic_id = ${id}`; //return a list of ID numbers
-  await sql`DELETE * FROM questions WHERE topic_id = ${id}`;
-  
-  questionIDs[0].forEach(id => {
-    sql`DELETE * FROM question_answer_options WHERE question_id = ${id}`;
-    sql`DELETE * FROM question_answers WHERE question_id = ${id}`;
+  questionIDs[0].forEach(qid => {
+    sql`DELETE * FROM question_answer_options WHERE question_id = ${qid}`;
+    sql`DELETE * FROM question_answers WHERE question_id = ${qid}`;
   });
+  await sql`DELETE * FROM topics WHERE id = ${id}`;
+  return await sql`DELETE * FROM questions WHERE topic_id = ${id}`;
+  
 };
 
 const isAdmin = async () => {

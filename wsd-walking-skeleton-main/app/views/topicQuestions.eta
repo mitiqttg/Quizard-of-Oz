@@ -1,30 +1,28 @@
 <% layout('./layouts/layout.eta') %>
 
 <form method="POST" action="/topics/<%= it.id %>/questions">
-<h1>Add a question below</h1><br/>
-<textarea name="question_text"><%= it.description ? it.description : "" %></textarea><br/>
-<input type="submit" value="Add a question"/>
+  <h1>Add a question below</h1><br/>
+  <textarea name="question_text"></textarea><br/>
+  <input type="submit" value="Add a question"/>
 </form>
 
-<h1>Questions!</h1>
+<h1>Current questions</h1>
 
-<% if (it.totalQuestions && it.totalQuestions.length > 0) { %>
-
-<ul>
-<% it.totalQuestions.forEach(question => { %>
-  <li> 
-    <a href="/topics/<%= it.id %>/questions/<%= question.id %>">
-      <%= question.question_text %>
-    </a> 
-    <form method="POST" action="/topics/:<%= question.id %>/delete">
-      <input type="submit" value="Delete"/>
-    </form>
-  </li>
-<% }); %>
-</ul>
-
+<% if (it.allQuestions && it.allQuestions.length > 0) { %>
+  <ul>
+  <% it.allQuestions.forEach(question => { %>
+    <li> 
+      <a href="/topics/<%= it.id %>/questions/<%= question.id %>">
+        <%= question.question_text %>
+      </a> 
+      <form method="POST" action="/topics/:<%= question.id %>/delete">
+        <input type="submit" value="Delete"/>
+      </form>
+    </li>
+  <% }); %>
+  </ul>
 <% } else { %>
 
-<p>Out of question.</p>
+  <p>Out of question.</p>
 
 <% } %>

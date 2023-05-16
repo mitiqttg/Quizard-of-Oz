@@ -3,9 +3,6 @@ import { validasaur } from "../../deps.js";
 
 const topicValidationRules = {
   name: [validasaur.required, validasaur.minLength(1)],
-  // description: [validasaur.required, validasaur.minLength(1)],
-  // chorecoins: [validasaur.required, validasaur.isNumeric],
-  // due_date: [validasaur.required, validasaur.isDate],
 };
 
 const getTopicData = async (request) => {

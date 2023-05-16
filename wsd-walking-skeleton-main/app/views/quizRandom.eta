@@ -1,0 +1,20 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1>Question</h1>
+
+<% if (it.totalQuestions && it.totalQuestions.length > 0) { %>
+    <ul>
+    <% it.allOptions.forEach(option => { %>
+      <li> 
+          <%= option.option_text %>
+          <form method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.question_id %>/options/<%= option.id %>">
+              <input type="submit" value="Choose"/>
+          </form>
+      </li>
+    <% }); %>
+    </ul>
+<% } else { %>
+
+  <p>Out of question.</p>
+
+<% } %>

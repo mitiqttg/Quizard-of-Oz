@@ -1,9 +1,0 @@
-<% layout("./layouts/layout.eta") %>
-
-<ul>
-<% it.topics.forEach(topic => { %>
-    <li> 
-        <a href="/quiz/<%= topic.id %>"> <%= topic.name %> </a>
-    </li>
-<% }) %>
-</ul>

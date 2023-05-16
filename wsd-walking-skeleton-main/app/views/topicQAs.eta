@@ -3,21 +3,20 @@
 <h1>Questions: <%= it.questionText%>></h1>
 
 <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>">
-    <h2>Add a answer below</h2><br/>
-    <textarea name="option_text"><%= it.description ? it.description : "" %></textarea><br/>
+    <h3>Add a answer below</h3><br/>
+    <textarea name="option_text"></textarea><br/>
+    <label for="scales">Correct</label>
+    <input type="checkbox" id="scales" name="is_correct" >
     <input type="submit" value="Add a answer"/><br/>
-    <div>
-        <input type="checkbox" id="scales" name="is_correct" checked>
-        <label for="scales">Correct</label>
-    </div>
 </form>
 
 <% if (it.answersList && it.answersList.length > 0) { %>
     <ul>
     <% it.answersList.forEach(answer => { %>
         <li> 
-            answer
-            <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= it.opntionId %>/delete">
+            <p>answer</p>
+            <% if (answer.is_correct) {<span>☑</span>} else {<span>☐</span>}%>
+            <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= answer.id %>/delete">
               <input type="submit" value="Delete"/>
             </form>
         </li>

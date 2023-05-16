@@ -23,12 +23,11 @@ router.post("/topics/:id/questions/:qId/options", topicsController.addAnswer);
 router.post("/topics/:tid/questions/:qId/options/:oId/delete", topicsController.deleteAnswer);
 
 router.get("/quiz", quizController.listQuizzes);
-router.get("/quiz/:tId", quizController.goQuiz);
-router.get("/quiz/:tId/questions/:qId", quizController.showRandomQuiz);
+router.get("/quiz/:tId", quizController.showRandomQuiz);
+router.get("/quiz/:tId/questions/:qId", quizController.goQuiz);
 router.post("/quiz/:tId/questions/:qId/options/:oId", quizController.chooseAnswer);
 router.get("/quiz/:tId/questions/:qId/correct", quizController.correctAnswer);
 router.get("/quiz/:tId/questions/:qId/incorrect", quizController.incorrectAnswer);
-
 
 router.get("/auth/register", registrationController.showRegistrationForm);
 router.post("/auth/register", registrationController.registerUser);
