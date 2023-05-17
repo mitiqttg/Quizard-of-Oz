@@ -1,7 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1> Correct! </h1>
+<h1> Correct! </h1> <br/>
 
-<a href="/quiz/<%= it.id %>">
+<a href="/quiz/<%= it.tId %>">
     Next question
 </a> 

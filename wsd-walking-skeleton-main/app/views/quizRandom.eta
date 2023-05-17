@@ -1,20 +1,18 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1>Question</h1>
-
-<% if (it.totalQuestions && it.totalQuestions.length > 0) { %>
-    <ul>
-    <% it.allOptions.forEach(option => { %>
-      <li> 
-          <%= option.option_text %>
-          <form method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.question_id %>/options/<%= option.id %>">
-              <input type="submit" value="Choose"/>
-          </form>
-      </li>
-    <% }); %>
-    </ul>
+<% if (it.quizData.questionText && it.quizData.questionText.length > 0) { %>
+    <h1>Question:</h1>
+    <h2>it.quizData.questionText</h2>
+    <% if (it.quizData.answerOptions && it.quizData.answerOptions.length > 0) { %>
+        <% it.quizData.answerOptions.forEach(option => { %>
+            <%= option.option_text %>
+            <form method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.questionId %>/options/<%= option.id %>">
+                <input type="submit" name="correctness" value="Choose"/>
+            </form>
+        <% }); %>
+    <% } else { %>
+      <p>No option available for this question.</p>
+    <% } %>
 <% } else { %>
-
-  <p>Out of question.</p>
-
+  <p>No question available for this topic.</p>
 <% } %>

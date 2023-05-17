@@ -6,22 +6,26 @@ const randomQuestionID = async (tId) => {
     return rows[0];
 };
 
-const showQuestion = async (tId,qId) => {
+const showQuiz = async (tId,qId) => {
     const questionText = await sql`SELECT question_text FROM questions WHERE question_id =${qId}`;
 
-    const ans = await sql`SELECT (id,option_text,is_correct) FROM question_answer_options WHERE question_id =${qId}`;
+    const ans = await sql`SELECT (id, option_text, is_correct) FROM question_answer_options WHERE question_id =${qId}`;
     
     const data = {
         "topicId": tId,
         "questionId": qId,
-        "questionText": questionText[0],
+        "questionText": questionText,
         "answerOptions": ans
     };
     return data;
 };
 
-const isCorrect = async (tId) => {
+const isCorrect = async (qId, oId) => {
+    return await sql`SELECT is_correct FROM questions_answer_options WHERE question_id =${qId} AND id =${oId}`;
+}; 
 
+const correctOptions = async (qId) => {
+    return await sql`SELECT option_text FROM questions_answer_options WHERE question_id =${qId} AND is_correct = TRUE`;
 }; 
 
 const listAvailableTopics = async () => {
@@ -30,7 +34,10 @@ const listAvailableTopics = async () => {
 };
 
   
-export { showQuestion, 
+export { 
+    showQuiz,
+    correctOptions, 
     randomQuestionID,
     isCorrect, 
-    listAvailableTopics };
+    listAvailableTopics 
+};

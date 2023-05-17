@@ -1,8 +1,9 @@
 import { Router } from "../deps.js";
-import * as mainController from "./controllers/mainController.js";
-import * as topicsController from "./controllers/topicsController.js";
 import * as registrationController from "./controllers/registrationController.js";
 import * as loginController from "./controllers/loginController.js";
+import * as mainController from "./controllers/mainController.js";
+import * as topicsController from "./controllers/topicsController.js";
+import * as questionController from "./controllers/questionController.js";
 import * as quizController from "./controllers/quizController.js";
 
 import * as questionApi from "./apis/questionApi.js";
@@ -16,18 +17,18 @@ router.post("/topics", topicsController.addTopic);
 router.get("/topics/:id", topicsController.goTopic);
 router.post("/topics/:id/delete", topicsController.deleteTopic);
 
-router.post("/topics/:id/questions", topicsController.addQuestion);
-router.get("/topics/:id/questions/:qId", topicsController.showQuestion);
-router.post("/topics/:tId/questions/:qId/delete", topicsController.deleteQuestion);
-router.post("/topics/:id/questions/:qId/options", topicsController.addAnswer);
-router.post("/topics/:tid/questions/:qId/options/:oId/delete", topicsController.deleteAnswer);
+router.post("/topics/:id/questions", questionController.addQuestion);
+router.get("/topics/:id/questions/:qId", questionController.showQuestion);
+router.post("/topics/:tId/questions/:qId/delete", questionController.deleteQuestion);
+router.post("/topics/:id/questions/:qId/options", questionController.addOption);
+router.post("/topics/:tid/questions/:qId/options/:oId/delete", questionController.deleteOption);
 
 router.get("/quiz", quizController.listQuizzes);
 router.get("/quiz/:tId", quizController.showRandomQuiz);
 router.get("/quiz/:tId/questions/:qId", quizController.goQuiz);
-router.post("/quiz/:tId/questions/:qId/options/:oId", quizController.chooseAnswer);
-router.get("/quiz/:tId/questions/:qId/correct", quizController.correctAnswer);
-router.get("/quiz/:tId/questions/:qId/incorrect", quizController.incorrectAnswer);
+router.post("/quiz/:tId/questions/:qId/options/:oId", quizController.chooseOption);
+router.get("/quiz/:tId/questions/:qId/correct", quizController.correctOption);
+router.get("/quiz/:tId/questions/:qId/incorrect", quizController.incorrectOption);
 
 router.get("/auth/register", registrationController.showRegistrationForm);
 router.post("/auth/register", registrationController.registerUser);

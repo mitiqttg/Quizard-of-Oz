@@ -23,7 +23,7 @@ const addTopic = async ({ request, response, render, user }) => {
 
   if (!passes) {
     console.log(errors);
-    choreData.validationErrors = errors;
+    topicData.validationErrors = errors;
     render("topicsList.eta", topicData);
   } else {
     await topicsService.addTopic(
@@ -48,4 +48,8 @@ const listTopics = async ({ render }) => {
   });
 };
 
-export { addTopic, claimChore, deleteTopic, listTopics };
+export { 
+  addTopic, 
+  deleteTopic, 
+  listTopics 
+};

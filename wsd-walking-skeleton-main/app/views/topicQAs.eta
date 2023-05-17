@@ -5,8 +5,8 @@
 <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>">
     <h3>Add a answer below</h3><br/>
     <textarea name="option_text"></textarea><br/>
-    <label for="scales">Correct</label>
-    <input type="checkbox" id="scales" name="is_correct" >
+    <label for="correctness">Correct</label>
+    <input type="checkbox" id="correctness" name="is_correct" >
     <input type="submit" value="Add a answer"/><br/>
 </form>
 
