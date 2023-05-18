@@ -3,21 +3,21 @@
 <h1>Questions: <%= it.questionText%>></h1>
 
 <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>">
-    <h3>Add a answer below</h3><br/>
+    <h3>Add a option below</h3><br/>
     <textarea name="option_text"></textarea><br/>
     <label for="correctness">Correct</label>
-    <input type="checkbox" id="correctness" name="is_correct" >
-    <input type="submit" value="Add a answer"/><br/>
+    <input type="checkbox" id="correctness" name="is_correct"/>
+    <input type="submit" value="Add a option"/><br/>
 </form>
 
-<% if (it.answersList && it.answersList.length > 0) { %>
+<% if (it.allOptions && it.allOptions.length > 0) { %>
     <ul>
-    <% it.answersList.forEach(answer => { %>
+    <% it.allOptions.forEach(option => { %>
         <li> 
-            <p>answer</p>
-            <% if (answer.is_correct) {<span>☑</span>} else {<span>☐</span>}%>
-            <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= answer.id %>/delete">
-              <input type="submit" value="Delete"/>
+            <p>option</p>
+            <% if (option.is_correct) {<span>☑</span>} else {<span>☐</span>}%>
+            <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= option.id %>/delete">
+              <input type="submit" value="Delete option"/>
             </form>
         </li>
     <% }); %>

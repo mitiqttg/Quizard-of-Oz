@@ -10,4 +10,14 @@ const randomSelectedQuestion = async ({ response }) => {
   }
 };
 
-export { randomSelectedQuestion };
+const verifyAnswer = async ({ response }) => {
+  const rows = await quizzesService.randomSelectedQuestion();
+
+  if (rows.length > 0) {
+    response.body = rows;
+  } else {
+    response.body = {};
+  }
+};
+
+export { randomSelectedQuestion, verifyAnswer };

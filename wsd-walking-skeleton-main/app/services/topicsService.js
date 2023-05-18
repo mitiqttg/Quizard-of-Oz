@@ -1,7 +1,7 @@
 import { sql } from "../database/database.js";
 
-const addTopic = async (userId,name) => {
-  await sql`INSERT INTO topics (user_id, name) VALUES (${userId}, ${name})`;
+const addTopic = async (userId, name) => {
+  return await sql`INSERT INTO topics (user_id, name) VALUES (${userId}, ${name})`;
 };
 
 const listTopics = async () => {
@@ -21,8 +21,8 @@ const deleteTopic = async (id) => {
   
 };
 
-const isAdmin = async () => {
-  const row = await sql`SELECT admin FROM users`;
+const isAdmin = async (userId) => {
+  const row = await sql`SELECT admin FROM users WHERE id = ${userId}`;
   return row[0];
 };
 
@@ -30,5 +30,5 @@ export {
   addTopic,
   listTopics,
   deleteTopic,
-  isAdmin,
+  isAdmin
 };

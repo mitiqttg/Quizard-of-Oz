@@ -8,6 +8,6 @@
 
 <h1>Statistics!</h1>
 
-<p>Total number of topics: it.totalTopics</p>
-<p>Total number of questions: it.totalQuestions</p>
-<p>Total number of questions answers: it.totalAnswers</p>
+<p>Total number of topics: <%= it.totalTopics %></p>
+<p>Total number of questions: <%= it.totalQuestions %></p>
+<p>Total number of questions answers: <%= it.totalAnswers %></p>

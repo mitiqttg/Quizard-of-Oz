@@ -6,10 +6,8 @@ const registerUser = async ({ request, response }) => {
   const params = await body.value;
 
   await userService.addUser(
-    params.get("name"),
-    params.get("address"),
     params.get("email"),
-    await bcrypt.hash(params.get("password")),
+    await bcrypt.hash(params.get("password"))
   );
 
   response.redirect("/auth/login");

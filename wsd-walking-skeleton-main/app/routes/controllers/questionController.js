@@ -13,7 +13,6 @@ const getQuestionData = async (request) => {
     };
 };
 
-
 const addQuestion = async ({ request, response, render, user, params }) => {
     const questionData = await getQuestionData(request);
     
@@ -34,7 +33,6 @@ const addQuestion = async ({ request, response, render, user, params }) => {
 
 const deleteTopic = async ({ params, response, user }) => {
     await topicsService.deleteTopic(params.id, user.id);
-    
     response.redirect("/topics");
 };
 
@@ -61,16 +59,16 @@ const getOptionData = async (request) => {
     };
 };
 
-const addOption = async ({ params, response, user }) => {
+const addOption = async ({ params, response }) => {
     const optionData = await getOptionData(request);
     
     const [passes, errors] = await validasaur.validate(
         optionData,
         optionValidationRules,
-        );
+    );
 
-        if (!passes) {
-            console.log(errors);
+    if (!passes) {
+        console.log(errors);
         optionData.validationErrors = errors;
         render("topicQAs.eta", optionData);
     } else {
@@ -79,14 +77,23 @@ const addOption = async ({ params, response, user }) => {
     }
 };
 
-const listOptions = async ({ params, response, user }) => {};
-const deleteOption = async ({ params, response, user }) => {};
+const showQuestionOptions = async ({ params, response, user }) => {
+    render("topicQAs.eta", {
+        questionText: await questionService.questionText(params.id, params.qId),
+        allOptions: await questionService.listOptions(params.qId),
+    });
+};
+
+const deleteOption = async ({ params, response }) => {
+    await questionService.deleteOption(params.qId, params.oId);
+    response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
+};
 
 export { 
     addQuestion, 
     deleteTopic, 
     listQuestions,
     addOption,
-    listOptions,
+    showQuestionOptions,
     deleteOption
 };

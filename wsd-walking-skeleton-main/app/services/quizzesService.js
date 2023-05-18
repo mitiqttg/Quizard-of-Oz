@@ -33,7 +33,6 @@ const listAvailableTopics = async () => {
     return rows;
 };
 
-  
 export { 
     showQuiz,
     correctOptions, 

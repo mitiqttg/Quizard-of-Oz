@@ -32,7 +32,7 @@
   <% } %>
 
   <div class="paper container">
-    <%~ it.body %>
+    <%= it.body %>
   </div>
 </body>
 </html>

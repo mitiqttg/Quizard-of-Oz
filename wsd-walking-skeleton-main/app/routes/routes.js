@@ -18,10 +18,10 @@ router.get("/topics/:id", topicsController.goTopic);
 router.post("/topics/:id/delete", topicsController.deleteTopic);
 
 router.post("/topics/:id/questions", questionController.addQuestion);
-router.get("/topics/:id/questions/:qId", questionController.showQuestion);
+router.get("/topics/:id/questions/:qId", questionController.showQuestionOptions);
 router.post("/topics/:tId/questions/:qId/delete", questionController.deleteQuestion);
 router.post("/topics/:id/questions/:qId/options", questionController.addOption);
-router.post("/topics/:tid/questions/:qId/options/:oId/delete", questionController.deleteOption);
+router.post("/topics/:tId/questions/:qId/options/:oId/delete", questionController.deleteOption);
 
 router.get("/quiz", quizController.listQuizzes);
 router.get("/quiz/:tId", quizController.showRandomQuiz);

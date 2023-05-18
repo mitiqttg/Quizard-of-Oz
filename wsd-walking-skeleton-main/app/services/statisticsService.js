@@ -12,10 +12,14 @@ const totalQuestions = async () => {
   return rows[0];
 };
 
-const totalAnswers = async () => {
-  const rows = await sql`SELECT COUNT(id) FROM question_answers`;
+const totalAnswers = async (userId) => {
+  const rows = await sql`SELECT COUNT(id) FROM question_answers WHERE user_id = ${userId}`;
 
   return rows[0];
 };
 
-export { totalTopics, totalAnswers, totalQuestions};
+export { 
+  totalTopics, 
+  totalAnswers, 
+  totalQuestions
+};

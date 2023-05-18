@@ -1,16 +1,4 @@
-import * as choreService from "../../services/topicsService.js";
-import * as choreService from "../../services/quizzesService.js";
-
-const getQuizData = async (request) => {
-  const body = request.body({ type: "form" });
-  const params = await body.value;
-  return {
-    title: params.get(""),
-    description: params.get("description"),
-    chorecoins: params.get("chorecoins"),
-    due_date: params.get("due_date"),
-  };
-};
+import * as quizzesService from "../../services/quizzesService.js";
 
 const chooseOption = async ({ params, response, user }) => {
   const tId = params.tId;

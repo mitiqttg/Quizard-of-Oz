@@ -43,7 +43,7 @@ const deleteTopic = async ({ params, response, user }) => {
 
 const listTopics = async ({ render }) => {
   render("topicsList.eta", {
-    totalTopics: await topicsService.listTopics(),
+    allTopics: await topicsService.listTopics(),
     isAdmin: await topicsService.isAdmin(),
   });
 };
