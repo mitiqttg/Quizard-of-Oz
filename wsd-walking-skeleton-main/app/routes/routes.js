@@ -5,7 +5,6 @@ import * as mainController from "./controllers/mainController.js";
 import * as topicsController from "./controllers/topicsController.js";
 import * as questionController from "./controllers/questionController.js";
 import * as quizController from "./controllers/quizController.js";
-
 import * as questionApi from "./apis/questionApi.js";
 
 const router = new Router();
@@ -14,7 +13,7 @@ router.get("/", mainController.showMain);
 
 router.get("/topics", topicsController.listTopics);
 router.post("/topics", topicsController.addTopic);
-router.get("/topics/:id", topicsController.goTopic);
+router.get("/topics/:id", questionController.listQuestions);
 router.post("/topics/:id/delete", topicsController.deleteTopic);
 
 router.post("/topics/:id/questions", questionController.addQuestion);
@@ -23,8 +22,8 @@ router.post("/topics/:tId/questions/:qId/delete", questionController.deleteQuest
 router.post("/topics/:id/questions/:qId/options", questionController.addOption);
 router.post("/topics/:tId/questions/:qId/options/:oId/delete", questionController.deleteOption);
 
-router.get("/quiz", quizController.listQuizzes);
-router.get("/quiz/:tId", quizController.showRandomQuiz);
+router.get("/quiz", quizController.listQuizTopics);
+router.get("/quiz/:tId", quizController.randomQuizOfTopic);
 router.get("/quiz/:tId/questions/:qId", quizController.goQuiz);
 router.post("/quiz/:tId/questions/:qId/options/:oId", quizController.chooseOption);
 router.get("/quiz/:tId/questions/:qId/correct", quizController.correctOption);

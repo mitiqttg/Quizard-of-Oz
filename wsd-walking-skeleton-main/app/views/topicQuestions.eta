@@ -15,7 +15,7 @@
       <a href="/topics/<%= it.id %>/questions/<%= question.id %>">
         <%= question.question_text %>
       </a> 
-      <form method="POST" action="/topics/:<%= question.id %>/delete">
+      <form method="POST" action="/topics/<%= it.id %>/questions/<%= question.id %>/delete">
         <input type="submit" value="Delete"/>
       </form>
     </li>

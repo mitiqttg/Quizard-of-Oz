@@ -7,17 +7,16 @@ const randomQuestionID = async (tId) => {
 };
 
 const showQuiz = async (tId,qId) => {
-    const questionText = await sql`SELECT question_text FROM questions WHERE question_id =${qId}`;
+    const questionText = await sql`SELECT question_text FROM questions WHERE topic_id = ${tId} AND id =${qId}`;
 
     const ans = await sql`SELECT (id, option_text, is_correct) FROM question_answer_options WHERE question_id =${qId}`;
     
-    const data = {
+    return {
         "topicId": tId,
         "questionId": qId,
         "questionText": questionText,
         "answerOptions": ans
     };
-    return data;
 };
 
 const isCorrect = async (qId, oId) => {

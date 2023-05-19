@@ -12,8 +12,8 @@ const totalQuestions = async () => {
   return rows[0];
 };
 
-const totalAnswers = async (userId) => {
-  const rows = await sql`SELECT COUNT(id) FROM question_answers WHERE user_id = ${userId}`;
+const totalAnswers = async () => {
+  const rows = await sql`SELECT COUNT(id) FROM question_answers `;
 
   return rows[0];
 };

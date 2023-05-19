@@ -31,9 +31,9 @@ const addQuestion = async ({ request, response, render, user, params }) => {
     }
 };
 
-const deleteTopic = async ({ params, response, user }) => {
-    await topicsService.deleteTopic(params.id, user.id);
-    response.redirect("/topics");
+const deleteQuestion = async ({ params, response }) => {
+    await questionService.deleteQuestion(params.qId);
+    response.redirect(`/topics/${params.tId}`);
 };
 
 const listQuestions = async ({ render, params }) => {
@@ -59,7 +59,7 @@ const getOptionData = async (request) => {
     };
 };
 
-const addOption = async ({ params, response }) => {
+const addOption = async ({ params, response, render }) => {
     const optionData = await getOptionData(request);
     
     const [passes, errors] = await validasaur.validate(
@@ -77,7 +77,7 @@ const addOption = async ({ params, response }) => {
     }
 };
 
-const showQuestionOptions = async ({ params, response, user }) => {
+const showQuestionOptions = async ({ params, render}) => {
     render("topicQAs.eta", {
         questionText: await questionService.questionText(params.id, params.qId),
         allOptions: await questionService.listOptions(params.qId),
@@ -91,7 +91,7 @@ const deleteOption = async ({ params, response }) => {
 
 export { 
     addQuestion, 
-    deleteTopic, 
+    deleteQuestion, 
     listQuestions,
     addOption,
     showQuestionOptions,

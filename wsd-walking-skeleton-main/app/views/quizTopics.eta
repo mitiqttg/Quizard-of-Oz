@@ -1,6 +1,6 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1>Current topics</h1>
+<h1>Current topics for quiz</h1>
 
 <% if (it.allTopics && it.allTopics.length > 0) { %>
     <ul>

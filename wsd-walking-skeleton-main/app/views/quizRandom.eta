@@ -4,12 +4,16 @@
     <h1>Question:</h1>
     <h2>it.quizData.questionText</h2>
     <% if (it.quizData.answerOptions && it.quizData.answerOptions.length > 0) { %>
+      <ul>
         <% it.quizData.answerOptions.forEach(option => { %>
-            <%= option.option_text %>
+            <li> 
+            <%= option.option_text %> 
             <form method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.questionId %>/options/<%= option.id %>">
                 <input type="submit" name="correctness" value="Choose"/>
             </form>
+            </li>
         <% }); %>
+      </ul>
     <% } else { %>
       <p>No option available for this question.</p>
     <% } %>
