@@ -6,8 +6,8 @@
 
 <p>If you haven't used the application before, you can start by <a href="/auth/register">registering</a>. If you have been here before, just <a href="/auth/login">log in</a>!</p>
 
-<h1>Statistics!</h1>
-
-<p>Total number of topics: <%= it.totalTopics %></p>
-<p>Total number of questions: <%= it.totalQuestions %></p>
-<p>Total number of questions answers: <%= it.totalAnswers %></p>
+<h3>Statistics!</h3> <br/>
+<p>Total number of topics: <%= it.totalTopics %></p> <br/>
+<p>Total number of questions: <%= it.totalQuestions %></p> <br/> 
+<p>Total number of questions answers: <%= it.totalAnswers %></p> <br/>
+<p>Total number of users: <%= it.totalUsers %></p> <br/>

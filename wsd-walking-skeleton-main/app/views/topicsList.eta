@@ -1,7 +1,6 @@
 <% layout('./layouts/layout.eta') %>
 
 <% if (it.isAdmin) { %>
-
   <h2>Add a topic!</h2>
 
   <% if (it.validationErrors) { %>
@@ -15,13 +14,12 @@
   <% } %>
 
   <form method="POST" action="/topics">
-    Name: <input type="text" name="name" value="<%= it.name ? it.name : ""%>"><br/>
+    Name: <input type="text" name="name" value="<%= it.name ? it.name : ""%>"/><br/>
     <input type="submit" value="Add a topic!"/>
   </form>
 <% } %>
 
-<h1>Current topics!</h1>
-
+<h2>Current topics!</h2>
 <% if (it.allTopics && it.allTopics.length > 0) { %>
   <ul>
   <% it.allTopics.forEach(topic => { %>

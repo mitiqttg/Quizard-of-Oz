@@ -13,13 +13,13 @@ router.get("/", mainController.showMain);
 
 router.get("/topics", topicsController.listTopics);
 router.post("/topics", topicsController.addTopic);
-router.get("/topics/:id", questionController.listQuestions);
 router.post("/topics/:id/delete", topicsController.deleteTopic);
 
-router.post("/topics/:id/questions", questionController.addQuestion);
-router.get("/topics/:id/questions/:qId", questionController.showQuestionOptions);
+router.get("/topics/:tId", questionController.listQuestions);
+router.post("/topics/:tId/questions", questionController.addQuestion);
+router.get("/topics/:tId/questions/:qId", questionController.showQuestionOptions);
 router.post("/topics/:tId/questions/:qId/delete", questionController.deleteQuestion);
-router.post("/topics/:id/questions/:qId/options", questionController.addOption);
+router.post("/topics/:tId/questions/:qId/options", questionController.addOption);
 router.post("/topics/:tId/questions/:qId/options/:oId/delete", questionController.deleteOption);
 
 router.get("/quiz", quizController.listQuizTopics);

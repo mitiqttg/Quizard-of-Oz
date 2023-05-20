@@ -1,4 +1,5 @@
 import * as topicsService from "../../services/topicsService.js";
+import * as questionService from "../../services/questionService.js";
 import { validasaur } from "../../deps.js";
 
 const questionValidationRules = {
@@ -6,7 +7,7 @@ const questionValidationRules = {
 };
 
 const getQuestionData = async (request) => {
-    const body = request.body();
+    const body = request.body({ type: "form" });
     const params = await body.value;
     return {
         question_text: params.get("question_text"),
@@ -19,39 +20,41 @@ const addQuestion = async ({ request, response, render, user, params }) => {
     const [passes, errors] = await validasaur.validate(
         questionData,
         questionValidationRules,
-        );
+    );
         
     if (!passes) {
         console.log(errors);
         questionData.validationErrors = errors;
         render("topicQuestions.eta", questionData);
     } else {
-        await questionService.addQuestion(params.id, user.id, questionData.question_text);
-        response.redirect(`/topics/${params.id}`);
+        await questionService.addQuestion( user.id, params.tId, questionData.question_text);
+        response.redirect(`/topics/${params.tId}`);
     }
 };
 
 const deleteQuestion = async ({ params, response }) => {
     await questionService.deleteQuestion(params.qId);
-    response.redirect(`/topics/${params.tId}`);
+    return response.redirect(`/topics/${params.tId}`);
 };
 
-const listQuestions = async ({ render, params }) => {
+const listQuestions = async ({ render, params, user }) => {
     render("topicQuestions.eta", {
-        allQuestions: await questionService.listQuestions(params.id),
-        isAdmin: await topicsService.isAdmin(),
+        tId: params.tId,
+        topicName: await questionService.topicName(params.tId),
+        allQuestions: await questionService.listQuestions(params.tId),
+        isAdmin: await topicsService.isAdmin(user.tId),
     });
 };
-///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////// O P T I O N S //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
+/////////////// O P T I O N S ////////////////
+//////////////////////////////////////////////
 
 const optionValidationRules = {
     option_text: [validasaur.required, validasaur.minLength(1)],
 };
 
 const getOptionData = async (request) => {
-    const body = request.body();
+    const body = request.body({ type: "form" });
     const params = await body.value;
     return {
         option_text: params.get("option_text"),
@@ -73,13 +76,15 @@ const addOption = async ({ params, response, render }) => {
         render("topicQAs.eta", optionData);
     } else {
         await questionService.addOption(params.qId, optionData.option_text, optionData.correctness);
-        response.redirect(`/topics/${params.id}/questions/${params.qId}`);
+        response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
     }
 };
 
 const showQuestionOptions = async ({ params, render}) => {
     render("topicQAs.eta", {
-        questionText: await questionService.questionText(params.id, params.qId),
+        topicId: params.id,
+        questionId: params.qId,
+        questionText: await questionService.questionText(params.tId, params.qId),
         allOptions: await questionService.listOptions(params.qId),
     });
 };

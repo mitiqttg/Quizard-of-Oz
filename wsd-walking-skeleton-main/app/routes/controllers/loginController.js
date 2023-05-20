@@ -4,9 +4,7 @@ import { bcrypt } from "../../deps.js";
 const processLogin = async ({ request, response, state }) => {
     const body = request.body({ type: "form" });
     const params = await body.value;    
-    const userFromDatabase = await userService.findUserByEmail(
-      params.get("email"),
-    );
+    const userFromDatabase = await userService.findUserByEmail(params.get("email"));
     if (userFromDatabase.length != 1) {
       response.redirect("/auth/login");
       return;
@@ -21,7 +19,7 @@ const processLogin = async ({ request, response, state }) => {
       return;
     }   
     await state.session.set("user", user);
-    response.redirect("/topics");
+    return response.redirect("/topics");
 };
 
 const showLoginForm = ({ render }) => {

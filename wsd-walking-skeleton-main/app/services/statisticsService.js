@@ -1,25 +1,36 @@
 import { sql } from "../database/database.js";
 
 const totalTopics = async () => {
-  const rows = await sql`SELECT COUNT(id) FROM topics`;
-
-  return rows[0];
+  const row = await sql`SELECT COUNT(id) as count FROM topics`;
+  if (row && row[0]) {
+    return row[0].count;  
+  } else return 0;
 };
 
 const totalQuestions = async () => {
-  const rows = await sql`SELECT COUNT(id) FROM questions`;
-
-  return rows[0];
+  const row = await sql`SELECT COUNT(id) as count FROM questions`;
+  if (row && row[0]) {
+    return row[0].count;  
+  } else return 0;
 };
 
 const totalAnswers = async () => {
-  const rows = await sql`SELECT COUNT(id) FROM question_answers `;
+  const row = await sql`SELECT COUNT(id) as count FROM question_answers `;
+  if (row && row[0]) {
+    return row[0].count;  
+  } else return 0;
+};
 
-  return rows[0];
+const totalUsers = async () => {
+  const row = await sql`SELECT COUNT(id) as count FROM users `;
+  if (row && row[0]) {
+    return row[0].count;  
+  } else return 0;
 };
 
 export { 
   totalTopics, 
-  totalAnswers, 
-  totalQuestions
+  totalQuestions,
+  totalAnswers,
+  totalUsers
 };

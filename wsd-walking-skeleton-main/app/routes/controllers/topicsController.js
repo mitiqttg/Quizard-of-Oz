@@ -26,25 +26,22 @@ const addTopic = async ({ request, response, render, user }) => {
     topicData.validationErrors = errors;
     render("topicsList.eta", topicData);
   } else {
-    await topicsService.addTopic(
-      user.id,
-      topicData.name,
-    );
+    await topicsService.addTopic(user.id, topicData.name);
 
     response.redirect("/topics");
   }
 };
 
-const deleteTopic = async ({ params, response, user }) => {
-  await topicsService.deleteTopic(params.id, user.id);
+const deleteTopic = async ({ params, response }) => {
+  await topicsService.deleteTopic(params.id);
 
-  response.redirect("/topics");
+  return response.redirect("/topics");
 };
 
-const listTopics = async ({ render }) => {
+const listTopics = async ({ render, user }) => {
   render("topicsList.eta", {
     allTopics: await topicsService.listTopics(),
-    isAdmin: await topicsService.isAdmin(),
+    isAdmin: await topicsService.isAdmin(user.id),
   });
 };
 

@@ -29,6 +29,21 @@ const randomQuizOfTopic = async ({ params, response }) => {
   response.redirect(`/quiz/${tId}/questions/${qId}`);
 };
 
+const randomQuizAPI = async ({ params, response }) => {
+  const tId = await quizzesService.randomTopicID();
+  const qId = await quizzesService.randomQuestionID(tId);
+  response.body = await quizzesService.showQuiz(tId,qId);
+};
+
+// const verifyAnswer = async ({response}) => {
+//   const body = request.body({ type: "json" });
+//   const document = await body.value;
+
+//   const validate = await quizzesService.isCorrect(document.questionId, document.optionId);
+
+//   response.body = { correct: validate };  
+// };
+
 const goQuiz = async ({ params, render }) => {
   const tId = params.tId;
   const qId = params.qId;
@@ -38,7 +53,7 @@ const goQuiz = async ({ params, render }) => {
 };
 
 const listQuizTopics = async ({ render }) => {
-  render("quiz.eta", {
+  render("quizTopics.eta", {
     allTopics: await quizzesService.listAvailableTopics(),
   });
 };
@@ -65,5 +80,6 @@ export {
   goQuiz, 
   listQuizTopics,
   correctOption,
-  incorrectOption 
+  incorrectOption,
+  randomQuizAPI
 };

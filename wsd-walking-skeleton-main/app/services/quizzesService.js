@@ -1,5 +1,11 @@
 import { sql } from "../database/database.js";
 
+const randomTopicID = async () => {
+    const rows = await sql`SELECT id FROM topics ORDER BY RAND() LIMIT 1`;
+
+    return rows[0];
+};
+
 const randomQuestionID = async (tId) => {
     const rows = await sql`SELECT id FROM questions WHERE topic_id =${tId} ORDER BY RAND() LIMIT 1`;
 
@@ -35,6 +41,7 @@ const listAvailableTopics = async () => {
 export { 
     showQuiz,
     correctOptions, 
+    randomTopicID,
     randomQuestionID,
     isCorrect, 
     listAvailableTopics 
