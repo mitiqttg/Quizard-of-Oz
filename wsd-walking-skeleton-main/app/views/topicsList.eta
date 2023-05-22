@@ -1,22 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
 <% if (it.isAdmin) { %>
-  <h2>Add a topic!</h2>
-
-  <% if (it.validationErrors) { %>
-    <ul>
-      <% Object.keys(it.validationErrors).forEach((attribute) => { %>
-        <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
-          <li><%= err %></li>
-        <% }); %>
-      <% }); %>
-    </ul>
-  <% } %>
-
-  <form method="POST" action="/topics">
-    Name: <input type="text" name="name" value="<%= it.name ? it.name : ""%>"/><br/>
-    <input type="submit" value="Add a topic!"/>
-  </form>
+  <h1>Welcome boss</h1>
 <% } %>
 
 <h2>Current topics!</h2>
@@ -36,6 +21,29 @@
   <% }); %>
   </ul>
 <% } else { %>
-  <p>Out of topic.</p>
+  <h3>Out of topic.</h3>
 <% } %>
+
+<% if (it.isAdmin) { %>
+  <h1>Welcome boss</h1>
+  <h2>Add a topic!</h2>
+
+  <form method="POST" action="/topics">
+    Name: <input type="text" name="name" value="<%= it.name ? it.name : ""%>"/><br/>
+    <input type="submit" value="Add a topic!"/>
+  </form>
+
+  <% if (it.errors) { %>
+    <ul>
+      <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+          <li><%= err %></li>
+        <% }); %>
+      <% }); %>
+    </ul>
+  <% } %>
+<% } %>
+
+
+
 

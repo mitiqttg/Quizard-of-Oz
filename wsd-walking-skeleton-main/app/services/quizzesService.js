@@ -1,27 +1,27 @@
 import { sql } from "../database/database.js";
 
 const randomTopicID = async () => {
-    const rows = await sql`SELECT id FROM topics ORDER BY RAND() LIMIT 1`;
-
-    return rows[0];
+    const row = await sql`SELECT id AS id FROM topics ORDER BY RANDOM() LIMIT 1`;
+    if (row && row[0]) {
+        return row[0].id;
+    } else return -1;
 };
 
 const randomQuestionID = async (tId) => {
-    const rows = await sql`SELECT id FROM questions WHERE topic_id =${tId} ORDER BY RAND() LIMIT 1`;
-
-    return rows[0];
+    const row = await sql`SELECT id AS id FROM questions WHERE topic_id =${tId} ORDER BY RANDOM() LIMIT 1`;
+    if (row && row[0]) {
+        return row[0].id;
+    } else return -1;
 };
 
-const showQuiz = async (tId,qId) => {
-    const questionText = await sql`SELECT question_text FROM questions WHERE topic_id = ${tId} AND id =${qId}`;
-
+const showQuiz = async (tId, qId) => {
+    const questionText = await sql`SELECT question_text AS text FROM questions WHERE topic_id = ${tId} AND id =${qId}`;
     const ans = await sql`SELECT (id, option_text, is_correct) FROM question_answer_options WHERE question_id =${qId}`;
-    
     return {
         "topicId": tId,
         "questionId": qId,
-        "questionText": questionText,
-        "answerOptions": ans
+        "questionText": questionText[0].text,
+        "answerOptions": ans,
     };
 };
 
@@ -38,11 +38,16 @@ const listAvailableTopics = async () => {
     return rows;
 };
 
+const recordOption = async (userId, qId, oId) => {
+    return await sql`INSERT INTO questions_answers (user_id, question_id, question_answer_option_id) VALUES (${userId}, ${qId}, ${oId})`;
+};
+
 export { 
     showQuiz,
     correctOptions, 
     randomTopicID,
     randomQuestionID,
     isCorrect, 
-    listAvailableTopics 
+    listAvailableTopics,
+    recordOption 
 };

@@ -27,14 +27,12 @@ const addTopic = async ({ request, response, render, user }) => {
     render("topicsList.eta", topicData);
   } else {
     await topicsService.addTopic(user.id, topicData.name);
-
-    response.redirect("/topics");
+    return response.redirect("/topics");
   }
 };
 
 const deleteTopic = async ({ params, response }) => {
   await topicsService.deleteTopic(params.id);
-
   return response.redirect("/topics");
 };
 

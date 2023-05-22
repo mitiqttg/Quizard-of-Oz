@@ -1,15 +1,15 @@
 <% layout('./layouts/layout.eta') %>
 
-<% if (it.quizData.questionText && it.quizData.questionText.length > 0) { %>
-    <h1>Question:</h1>
-    <h2>it.quizData.questionText</h2>
-    <% if (it.quizData.answerOptions && it.quizData.answerOptions.length > 0) { %>
+<% if (it.questionText && it.questionText.length > 0) { %>
+    <h2>Question:</h2>
+    <h2> <% it.questionText %> </h2>
+    <% if (it.answerOptions && it.answerOptions.length > 0) { %>
       <ul>
-        <% it.quizData.answerOptions.forEach(option => { %>
+        <% it.answerOptions.forEach(option => { %>
             <li> 
             <%= option.option_text %> 
             <form method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.questionId %>/options/<%= option.id %>">
-                <input type="submit" name="correctness" value="Choose"/>
+                <input type="submit" name="verify" value="Choose"/>
             </form>
             </li>
         <% }); %>

@@ -5,8 +5,9 @@ const listQuestions = async (id) => {
   return rows;
 };
 
-const addQuestion = async ( userId, tId, question_text) => {
-  return await sql`INSERT INTO questions ( user_id, topic_id, question_text) VALUES ( ${userId}, ${tId}, ${question_text})`;
+const addQuestion = async ( userId, tId, question_text ) => {
+  return await sql`INSERT INTO questions (user_id, topic_id, question_text) 
+  VALUES (${userId}, ${tId}, ${question_text})`;
 };
 
 const deleteQuestion = async (qId) => {
@@ -25,18 +26,19 @@ const questionText = async (tId, qId) => {
 
 const listOptions = async (qId) => {
   const rows = await sql`SELECT * FROM question_answer_options WHERE question_id= ${qId}`;
-  return rows;
+  return rows; 
 };
 
-const addOption = async (qId,text,correctness) => {
-  return await sql`INSERT INTO question_answer_options (question_id, option_text, is_correct) VALUES (${qId}, ${text}, ${correctness})`;
+const addOption = async (qId, text, correctness) => { 
+  return await sql`INSERT INTO question_answer_options (question_id, option_text, is_correct) 
+  VALUES (${qId}, ${text}, ${correctness})`;
 };
 
-const deleteOption = async (qId, oId) => {
+const deleteOption = async (qId, oId) => { 
   await sql`DELETE FROM question_answer_options WHERE question_id = ${qId} AND id = ${oId}`;
 };
 
-export {
+export { 
   addQuestion,
   topicName,
   listQuestions,
