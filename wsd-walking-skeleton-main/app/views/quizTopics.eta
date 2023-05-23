@@ -9,12 +9,12 @@
             <a href="/quiz/<%= topic.id %>">
                 <%= topic.name %>
             </a> 
-            <% if (it.message) { %>
-                <p class="message"> <%=it.message%> </p>
-            <% } %>
         </li>
     <% }); %>
     </ul>
+    <% if (it.message) { %>
+        <p class="message"> <%=it.message%> </p>
+    <% } %>
 <% } else { %>
     <p>Out of topic.</p>
 <% } %> 

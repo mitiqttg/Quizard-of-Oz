@@ -11,7 +11,9 @@ const addQuestion = async ( userId, tId, question_text ) => {
 };
 
 const deleteQuestion = async (qId) => {
-  await sql`DELETE FROM questions WHERE id = ${qId}`;
+  await sql`DELETE FROM question_answers WHERE question_id = ${qId}`;
+  await sql`DELETE FROM question_answer_options WHERE question_id = ${qId}`;
+  return await sql`DELETE FROM questions WHERE id = ${qId}`;
 };
 
 const topicName = async (tId) => { 

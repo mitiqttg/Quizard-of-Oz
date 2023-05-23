@@ -1,14 +1,13 @@
 <% layout('./layouts/layout.eta') %>
 
 <% if (it.questionText && it.questionText.length > 0) { %>
-    <h2>Question:</h2>
-    <h2> <% it.questionText %> </h2>
+    <h2>Question: <%= it.questionText %> </h2>
     <% if (it.answerOptions && it.answerOptions.length > 0) { %>
       <ul>
         <% it.answerOptions.forEach(option => { %>
             <li> 
             <%= option.option_text %> 
-            <form method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.questionId %>/options/<%= option.id %>">
+            <form method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.question_id %>/options/<%= option.id %>">
                 <input type="submit" name="verify" value="Choose"/>
             </form>
             </li>
@@ -16,6 +15,9 @@
       </ul>
     <% } else { %>
       <p>No option available for this question.</p>
+      <a href="/quiz/<%= it.topicId %>">
+        Next question
+      </a> 
     <% } %>
 <% } else { %>
   <p>No question available for this topic.</p>

@@ -23,7 +23,8 @@ const addTopic = async ({ request, response, render, user }) => {
 
   if (!passes) {
     console.log(errors);
-    topicData.validationErrors = errors;
+    topicData.errors = errors;
+    topicData.message = "Your topic name must has at least one character";
     render("topicsList.eta", topicData);
   } else {
     await topicsService.addTopic(user.id, topicData.name);

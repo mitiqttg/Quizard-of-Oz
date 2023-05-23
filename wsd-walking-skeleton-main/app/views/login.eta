@@ -1,4 +1,4 @@
-<% layout("./layouts/layout.eta") %>
+<% layout('./layouts/layout.eta') %>
 
 <h1>Login form</h1>
 
@@ -6,8 +6,11 @@
   Email:<br/>
   <input type="email" name="email" /> <br/>
   Password:<br/>
-  <input type="password" name="password" /> <br/>
+  <input type="password" name="password"/> <br/>
   <input type="submit" value="Login" />
 </form>
-
+<p class="message"> 
+<%= it.emailDetail ? it.emailDetail:'' %>
+<%= it.passwordDetail ? it.passwordDetail:'' %>
+</p>
 <a href="/auth/register">Not yet registered? Register here.</a>

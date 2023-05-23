@@ -1,27 +1,17 @@
 import * as quizzesService from "../../services/quizzesService.js";
+import * as questionService from "../../services/questionService.js";
 
-const chooseOption = async ({ params, response, render }) => {
+const chooseOption = async ({ params, response, user }) => {
   const tId = params.tId;
   const qId = params.qId;
   const oId = params.oId;
   const correctness = await quizzesService.isCorrect(qId, oId);
   await quizzesService.recordOption(user.id, qId, oId);
-  if (correctness[0]) {
+  if (correctness) {
     response.redirect(`/quiz/${tId}/questions/${qId}/correct`);
   } else {
     response.redirect(`/quiz/${tId}/questions/${qId}/incorrect`);
   }
-  // if (correctness) {
-  //   render("quizCorrect.eta", {
-  //     tId: tId,
-  //   });
-  // } else {
-  //   render("quizIncorrect.eta", { 
-  //     tId: tId,
-  //     correctOptions: await quizzesService.correctOptions(qId),
-  //   });
-  // }  
-  //response.redirect(`/quiz/${tId}/questions/${qId}`);
 };
 
 const randomQuizOfTopic = async ({ params, response, render }) => {
@@ -32,7 +22,7 @@ const randomQuizOfTopic = async ({ params, response, render }) => {
   if (qId < 0) {
     render("quizTopics.eta", {
       allTopics: await quizzesService.listAvailableTopics(),
-      message: "This topic does not have any available questions.",
+      message: "This topic does not have any available question.",
     });
     return;
   }
@@ -66,8 +56,11 @@ const listQuizTopics = async ({ render }) => {
 
 const correctOption = async ({ render, params }) => {
   const tId = params.tId;
+  const qId = params.qId;
   render("quizCorrect.eta", {
+    question: await questionService.questionText(tId, qId),
     tId: tId,
+    correctOptions: await quizzesService.correctOptions(qId),
   });
 };
 
@@ -75,6 +68,7 @@ const incorrectOption = async ({ render, params }) => {
   const tId = params.tId;
   const qId = params.qId;
   render("quizIncorrect.eta", {
+    question: await questionService.questionText(tId, qId),
     tId: tId,
     correctOptions: await quizzesService.correctOptions(qId),
   });

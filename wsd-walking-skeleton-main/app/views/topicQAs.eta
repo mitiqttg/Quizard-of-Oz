@@ -1,7 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
-<h2> Questions:</h2>
-<h3 class="highlight"> <%= it.questionText %> </h3>
+<h2> Topic: <a href="/topics/<%= it.topicId %>"> <%= it.topicName %> </a> </h2>
+<h3 style="color:blue;"> Questions: <%= it.questionText %> </h3>
 
 <% if (it.allOptions && it.allOptions.length > 0) { %>
     <ul>

@@ -63,6 +63,7 @@ const getOptionData = async (request) => {
 const listQuestionOptions = async ({ params, render }) => {
     render("topicQAs.eta", {
         topicId: params.tId,
+        topicName: await questionService.topicName(params.tId),
         questionId: params.qId,
         questionText: await questionService.questionText(params.tId, params.qId),
         allOptions: await questionService.listOptions(params.qId),
@@ -101,3 +102,5 @@ export {
     listQuestionOptions,
     deleteOption
 };
+
+{/* <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/> */}

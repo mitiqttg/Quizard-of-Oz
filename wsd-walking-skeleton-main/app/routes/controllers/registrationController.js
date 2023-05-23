@@ -1,4 +1,4 @@
-// import { bcrypt } from "../../deps.js";
+import { bcrypt } from "../../deps.js";
 import * as userService from "../../services/userService.js";
 
 const registerUser = async ({ render, request, response }) => {
@@ -14,11 +14,9 @@ const registerUser = async ({ render, request, response }) => {
       description: "This email is already registered",
     });
     return;
-  } else {
-    await userService.addUser(email, password);
-    return response.redirect("/auth/login");
   }
-
+  await userService.addUser(email, await bcrypt.hash(password));
+  return response.redirect("/auth/login");
 };
 
 const showRegistrationForm = ({ render }) => {

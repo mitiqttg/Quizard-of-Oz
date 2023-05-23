@@ -1,21 +1,31 @@
 import * as userService from "../../services/userService.js";
 import { bcrypt } from "../../deps.js";
 
-const processLogin = async ({ request, response, state }) => {
+const processLogin = async ({ request, response, state, render }) => {
     const body = request.body({ type: "form" });
     const params = await body.value;    
     const userFromDatabase = await userService.findUserByEmail(params.get("email"));
-    if (userFromDatabase.length != 1) {
-      response.redirect("/auth/login");
+    if (userFromDatabase.length == 0) {
+      render("login.eta", {
+        emailDetail: "This email is not registered",
+      });
       return;
-    }   
+    } else if (userFromDatabase.length > 1) {
+      render("login.eta", {
+        emailDetail: "This email is used multiple times",
+      });
+      return;
+    }  
     const user = userFromDatabase[0];
+    console.log(user);
     const passwordMatches = await bcrypt.compare(
       params.get("password"),
       user.password,
     );  
     if (!passwordMatches) {
-      response.redirect("/auth/login");
+      render("login.eta", {
+        passwordDetail: "Password is incorrect",
+      });
       return;
     }   
     await state.session.set("user", user);
