@@ -12,7 +12,7 @@ const processLogin = async ({ request, response, state, render }) => {
       return;
     } else if (userFromDatabase.length > 1) {
       render("login.eta", {
-        emailDetail: "This email is used multiple times",
+        emailDetail: "This email is used once, please check password",
       });
       return;
     }  

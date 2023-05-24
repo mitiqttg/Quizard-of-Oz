@@ -4,6 +4,15 @@ const addTopic = async (userId, name) => {
   return await sql`INSERT INTO topics (user_id, name) VALUES (${userId}, ${name})`;
 };
 
+const uniqueName = async (name) => {
+  const row = await sql`SELECT id FROM topics WHERE name = ${name}`;
+  if (row && row.length > 0) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 const listTopics = async () => {
   const rows = await sql`SELECT * FROM topics ORDER BY name ASC`;
   return rows;
@@ -31,6 +40,7 @@ const isAdmin = async (userId) => {
 
 export {
   addTopic,
+  uniqueName,
   listTopics,
   deleteTopic,
   isAdmin

@@ -2,7 +2,7 @@
 
 <h1 class="incorrect"> Incorrect! </h1>
 <h3> <%= it.question %> </h3>
-<p> The correct option was: </p>
+<p> The correct options are: </p>
 <% if (it.correctOptions && it.correctOptions.length > 0 ) {%>
     <% it.correctOptions.forEach(option => { %>
         <p>&#10024; <%= option.option_text %> </p> <br/>

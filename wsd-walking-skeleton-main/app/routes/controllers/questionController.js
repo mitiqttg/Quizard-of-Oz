@@ -6,36 +6,39 @@ const questionValidationRules = {
     question_text: [validasaur.required, validasaur.minLength(1)],
 };
 
-const getQuestionData = async (request) => {
+const getQuestionData = async (request, params) => {
     const body = request.body({ type: "form" });
-    const params = await body.value;
+    const paramsBody = await body.value;
     return {
-        question_text: params.get("question_text"),
+        question_text: paramsBody.get("question_text"),
+        tId: params.tId,
+        topicName: await questionService.topicName(params.tId),
+        allQuestions: await questionService.listQuestions(params.tId),
     };
 };
 
-const listQuestions = async ({ render, params, user }) => {
+const listQuestions = async ({ render, params }) => {
     render("topicQuestions.eta", {
         tId: params.tId,
         topicName: await questionService.topicName(params.tId),
         allQuestions: await questionService.listQuestions(params.tId),
-        isAdmin: await topicsService.isAdmin(user.id),
     });
 };
 
 const addQuestion = async ({ request, response, render, user, params }) => {
-    const questionData = await getQuestionData(request);
+    const questionData = await getQuestionData(request, params);
     
     const [passes, errors] = await validasaur.validate(questionData, questionValidationRules,);
         
     if (!passes) {
         console.log(errors);
         questionData.errors = errors;
+        questionData.message = "Question should not be empty";
         render("topicQuestions.eta", questionData);
-    } else {
-        await questionService.addQuestion(user.id, params.tId, questionData.question_text);
-        response.redirect(`/topics/${params.tId}`);
+        return;
     }
+    await questionService.addQuestion(user.id, params.tId, questionData.question_text);
+    return response.redirect(`/topics/${params.tId}`);
 };
 
 const deleteQuestion = async ({ params, response }) => {
@@ -81,11 +84,13 @@ const addOption = async ({ params, response, render, request }) => {
     if (!passes) {
         console.log(errors);
         optionData.errors = errors;
+        optionData.message = "Option should not be empty";
         render("topicQAs.eta", optionData);
+        return;
     } else {
         console.log(optionData.correctness)
         await questionService.addOption(params.qId, optionData.option_text, optionData.correctness);
-        response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
+        return response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
     }
 };
 
@@ -102,5 +107,3 @@ export {
     listQuestionOptions,
     deleteOption
 };
-
-{/* <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/> */}

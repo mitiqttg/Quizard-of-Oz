@@ -7,16 +7,20 @@ const registerUser = async ({ render, request, response }) => {
   
   const email = params.get("email");
   const password = params.get("password");
-
+  const data = {};
   const existEmail = await userService.findUserByEmail(email); 
   if (existEmail && existEmail.length > 0) { 
-    render("registration.eta", {
-      description: "This email is already registered",
-    });
-    return;
+    data.emaildescription= "This email is already registered";
   }
-  await userService.addUser(email, await bcrypt.hash(password));
-  return response.redirect("/auth/login");
+  if (password.length < 6) { 
+    data.pwdescription= "Password needs to be at least 6 character";
+  }
+  if (data && data.length >0) {
+    return render("registration.eta", data);
+  } else {
+    await userService.addUser(email, await bcrypt.hash(password));
+    return response.redirect("/auth/login");
+  }
 };
 
 const showRegistrationForm = ({ render }) => {

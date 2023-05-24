@@ -28,7 +28,7 @@
 <% if (it.isAdmin) { %>
   <h2>Add a topic!</h2>
   <form method="POST" action="/topics">
-    Name: <input type="text" name="name" value="<%= it.name ? it.name : ""%>"/>
+    Name: <input type="text" name="topic-name" />
     <input type="submit" value="Add a topic!"/>
   </form>
   <% if (it.errors) { %>
@@ -40,8 +40,8 @@
       <% }); %>
     </ul>
   <% } %>
-  <p class="highlight"> <%= it.message ? it.message : "" %> </p>
 <% } %>
+<p class="message"> <%= it.message ? it.message : "" %> </p>
 
 
 

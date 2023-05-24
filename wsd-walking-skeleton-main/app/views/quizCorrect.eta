@@ -8,6 +8,6 @@
         <p>&#10024; <%= option.option_text %> </p> <br/>
     <% }) %>
 <% } %>
-<a href="/quiz/<%= it.tId %>">
+<a href="/quiz/<%= it.tId %>" style="text-decoration:none;">
     Next question
 </a> 

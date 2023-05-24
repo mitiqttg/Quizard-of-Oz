@@ -1,6 +1,6 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1> <%= it.topicName %> </h1>
+<h1 style="text-decoration: none;"> <%= it.topicName %> </h1>
 
 <% if (it.allQuestions && it.allQuestions.length > 0) { %>
   <h3>Current questions</h3>
@@ -25,12 +25,4 @@
   <textarea name="question_text"></textarea><br/>
   <input type="submit" value="Add a question"/>
 </form>
-<% if (it.errors) { %>
-    <ul>
-      <% Object.keys(it.errors).forEach((attribute) => { %>
-        <% Object.values(it.errors[attribute]).forEach((err) => { %>
-          <li><%= err %></li>
-        <% }); %>
-      <% }); %>
-    </ul>
-<% } %>
+<p class="message"> <%= it.message ? it.message : ""%> </p>
