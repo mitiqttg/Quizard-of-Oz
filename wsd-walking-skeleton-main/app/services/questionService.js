@@ -45,6 +45,7 @@ const addOption = async (qId, text, correctness) => {
 
 // Delete an option
 const deleteOption = async (qId, oId) => { 
+  await sql`DELETE FROM question_answers WHERE question_id = ${qId} AND question_answer_option_id = ${oId}`;
   await sql`DELETE FROM question_answer_options WHERE question_id = ${qId} AND id = ${oId}`;
 };
 

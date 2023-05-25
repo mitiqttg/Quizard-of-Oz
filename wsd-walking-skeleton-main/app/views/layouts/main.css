@@ -11,11 +11,15 @@ form { display: inline-block; }
 
 h1, .cen, #collapsible-body { text-align: center; }
 
-.message, .incorrect{ color: rgb(159, 105, 247); }
+.message, .incorrect{ color: #b48ff0; }
 
 .correct { color: rgb(29, 226, 12); }
 
 .highlight { color: #0be11d; }
+nav {
+  background-image: radial-gradient(circle, #20f803 0%, #ba6dee 100%);
+  background-color: #0be11d;
+}
 
 textarea {
   width: 80%;

@@ -1,7 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
 <% if (it.isAdmin) { %>
-  <h1 class="highlight">Welcome boss</h1>
+  <h1 class="highlight">Welcome boss!</h1>
 <% } else { %>
   <h1 class="highlight">Good morning, sunshine! &#9788;</h1>
 <% } %>
@@ -29,10 +29,10 @@
   <h2>Add a topic!</h2>
   <form method="POST" action="/topics">
     Name: <input type="text" name="topic-name" value="<%= it.errors ? it.errors.name.required : '' %>"/>
-    <input type="submit" value="Add a topic!"/>
+    <input type="submit" value="Add topic"/>
   </form>
 <% } %>
-<p class="message"> <%= it.message ? it.message : "" %> </p>
+<p class="message centering"> <%= it.message ? it.message : "" %> </p>
 
 
 

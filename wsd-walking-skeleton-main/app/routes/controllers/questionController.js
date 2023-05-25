@@ -57,46 +57,41 @@ const optionValidationRules = {
 };
 
 // Retrieve option data from input form
-const getOptionData = async (request) => {
+const getOptionData = async (request, params) => {
     const body = request.body({ type: "form" });
-    const params = await body.value;
+    const paramsBody = await body.value;
     return {
-        option_text: params.get("option_text"),
-        correctness: params.has("correctness"),
-    };
-};
-
-// List all the options for the current question
-const listQuestionOptions = async ({ params, render }) => {
-    return render("topicQAs.eta", {
+        option_text: paramsBody.get("option_text"),
+        correctness: paramsBody.has("correctness"),
         topicId: params.tId,
         topicName: await questionService.topicName(params.tId),
         questionId: params.qId,
         questionText: await questionService.questionText(params.tId, params.qId),
         allOptions: await questionService.listOptions(params.qId),
-    });
+    };
+};
+
+// List all the options for the current question
+const listQuestionOptions = async ({ params, render, request }) => {
+    return render("topicQAs.eta", await getOptionData(request, params));
 };
 
 // Add an option 
 const addOption = async ({ params, response, render, request }) => {
-    const optionData = await getOptionData(request);
+    const optionData = await getOptionData(request, params);
     // Check if the option met the length requirement
-    const [passes, errors] = await validasaur.validate(
-        optionData,
-        optionValidationRules,
-    );
-    
-    // If no, return a message below the current question page,
-    // otherwise, add the option to the database and reload the question page
+    const [passes, errors] = await validasaur.validate( optionData, optionValidationRules, );
+
+    // If no, return a message below the current question page.
+    // Add the option to the database and reload the question page if all satisfied.
     if (!passes) {
         optionData.errors = errors;
         optionData.optionMessage = "Option should not be empty";
-        render("topicQAs.eta", optionData);
-        return;
-    } else {
-        await questionService.addOption(params.qId, optionData.option_text, optionData.correctness);
-        return response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
+        return render("topicQAs.eta", optionData);
     }
+
+    await questionService.addOption(params.qId, optionData.option_text, optionData.correctness);
+    return response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
 };
 
 // Delete an option from the database

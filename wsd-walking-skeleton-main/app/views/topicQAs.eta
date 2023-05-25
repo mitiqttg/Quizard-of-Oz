@@ -1,7 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
 <h1> Topic: <a href="/topics/<%= it.topicId %>"> <%= it.topicName %> </a> </h1>
-<h3 style="color:blue;"> Questions: <%= it.questionText %> </h3>
+<h3 style="color:#327bf0;"> Questions: <%= it.questionText %> </h3>
 <% if (it.allOptions && it.allOptions.length > 0) { %>
     <ul>
     <% it.allOptions.forEach(option => { %>
@@ -24,15 +24,14 @@
     </form>
 <% } %> <br/>
 <form method="POST" action='/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options'>
-    <h3>Add a option</h3>
+    <h3>Add a option below</h3>
     <div class="checkbox">
-    <textarea name="option_text" value="<%= it.errors ? it.errors : ''%>"> </textarea>
-    <div style="margin-left: 10%;">
+    <textarea name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea>
+    <div style="margin-left: 5%;">
         <label for="correctness">Correct</label>
         <input type="checkbox" id="correctness" name="correctness" />
     </div>
     </div> <br/>
-
-    <input type="submit" value="Add"/><br/>
+    <input type="submit" value="Add option"/><br/>
 </form>
-<p class="message"> <%= it.optionMessage ? it.optionMessage : ""%> </p>
+<p class="message centering"> <%= it.optionMessage ? it.optionMessage : ""%> </p>

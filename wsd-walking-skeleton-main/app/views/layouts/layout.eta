@@ -13,38 +13,39 @@
 
     form { display: inline-block; }
 
-    h1, .cen, #inline { text-align: center; }
+    h1, .centering, #inline { text-align: center; }
 
     .message, .incorrect{ color: rgb(255, 0, 0); }
 
     .correct { color: rgb(29, 226, 12); }
 
     .highlight { color: #327bf0; }
-    body {
-      background-color: rgb(159, 105, 247);
-    }
+
+    body { background-color: #b48ff0; }
+
     textarea, input[type=text] {
-      width: 80% !important;
       height: 50px;
       padding: 12px 20px;
       box-sizing: border-box;
+      width: 400px !important;
       border: 2px solid #327bf0;
       border-radius: 4px;
       background-color: beige;
       font-size: 16px;
       resize: none;
     }
-    #collapsible-body {
-      display: inline-block !important;
-    }
+    #collapsible-body { display: inline-block !important; }
+    
     #nav, .border, .fixed, .split-nav {
       justify-content: center !important;
     }
-    ul.inline {
+
+    nav ul.inline {
       display: inline-block !important;
+      margin-bottom: 8px !important;
     }
     .border, .fixed, .split-nav {
-      background-color: #0be11d;
+      background-image: radial-gradient(circle, #20f803 0%, #0400ff 100%);
     }
     div.checkbox {
       display: flex;
@@ -65,7 +66,7 @@
         <div class="collapsible-body">
           <ul class="inline">
               <li><a href="/">Main page</a></li>
-              <li><a href="/topics">Topics</a></li>
+              <li><a href="/topics" style="margin-right: 30px !important; margin-left: 30px !important;">Topics</a></li>
               <li><a href="/quiz">Quiz</a></li>
           </ul>
         </div>

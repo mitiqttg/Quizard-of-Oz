@@ -1,11 +1,13 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1>Practice application</h1>
+<h1 class="highlight">Practice application</h1>
 
-<p>This application is used for repeated practice of learned content. </p>
-<p> The application provides a list of topics with random quizzes from available topics.</p>
+<p> This application is used for repeated practice of learned content. </p>
+<p> In this main page, you can see stastistical parameters of the application  </p>
+<p> In topics, you can see available topics; you can add questions and options according to the topic.</p>
+<p> In quiz, you can practice with questions from available topics.</p>
 
-<p>If you haven't used the application before, you can start by <a href="/auth/register">registering</a>. If you have been here before, just <a href="/auth/login">log in</a>!</p>
+<p>Newbie? You can start by <a href="/auth/register">REGISTERING</a>. If you have been here before, just <a href="/auth/login">LOG IN</a>!</p>
 
 <h3 class="highlight">Statistics!</h3>
 <p>Total number of topics: <%= it.totalTopics %></p> 
