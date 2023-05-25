@@ -34,13 +34,21 @@
       font-size: 16px;
       resize: none;
     }
-    #nav ul {
-      text-decoration: none !important;
-      text-align: center !important;
+    #collapsible-body {
+      display: inline-block !important;
+    }
+    #nav, .border, .fixed, .split-nav {
+      justify-content: center !important;
+    }
+    ul.inline {
       display: inline-block !important;
     }
     .border, .fixed, .split-nav {
-      background-color: #327bf0;
+      background-color: #0be11d;
+    }
+    div.checkbox {
+      display: flex;
+      justify-content: space-between;
     }
   </style>
 </head>  

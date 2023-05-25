@@ -1,23 +1,24 @@
 // const { test, expect } = require("@playwright/test");
 
-// test("Main page has expected headings and statistics", async ({ page }) => {
-//   await page.goto("https://wick.fly.dev/");
-//   await expect(page.locator("h1")).toContainText("Shared shopping lists");
-//   await expect(page.locator("ul > li")).toContainText([`Shopping lists:`, `Shopping list items:`]);
+// test("Main page has expected statistics", async ({ page }) => {
+//   await page.goto("");
+//   await expect(page.locator("p")).toContainText("Total number of topics:");
+//   await expect(page.locator("p")).toContainText("Total number of questions:");
+//   await expect(page.locator("p")).toContainText("Total number of questions anwers:");
+//   await expect(page.locator("p")).toContainText("Total number of users:");
 // });
 
-// test("Can create a new list, listing all active lists", async ({ page }) => {
-//   await page.goto("https://wick.fly.dev/lists");
-//   await expect(page.locator("h1")).toContainText(["Shopping lists"]);         
-//   await expect(page.locator("h2")).toContainText(["Add a list","Active lists"]);         
-//   const randomname =`${Math.random()}`;
-//   await page.locator("input[type=text]").type(randomname);
-//   await page.getByRole('button', { name: 'Create list!' }).click();
-//   await expect(page.locator(`a >> text="${randomname}"`)).toHaveText(randomname);
+// test("Can create a new question, listing all questions", async ({ page }) => {
+    //   await page.goto("");
+    //   await expect(page.locator("h2")).toContainText("Current questions");
+//   const randomQuestion =`${Math.random()*10}`;
+//   await page.locator("textarea[name=question_text]").type(randomQuestion);
+//   await page.getByRole('submit', { name: 'Add a question' }).click();
+//   await expect(page.locator(`a >> text="${randomQuestion}"`)).toHaveText(randomQuestion);
 // });
 
-// test("Can deactivate a list.", async ({ page }) => {
-//   await page.goto("https://wick.fly.dev/lists");
+// test("Can delete a question.", async ({ page }) => {
+//   await page.goto("");
 //   const listName = `List ${Math.random()}`;
 //   await page.locator("input[type=text]").type(listName);
 //   await page.getByRole('button', { name: 'Create list!' }).click();

@@ -27,8 +27,8 @@ const topicName = async (tId) => {
 
 // Return question text
 const questionText = async (tId, qId) => {
-  const rows = await sql`SELECT question_text AS text FROM questions WHERE id= ${qId} AND topic_id = ${tId}`;
-  return rows[0].text;
+  const rows = await sql`SELECT question_text AS qtext FROM questions WHERE id= ${qId} AND topic_id = ${tId}`;
+  return rows[0].qtext;
 };
 
 // Return all options for the given question
