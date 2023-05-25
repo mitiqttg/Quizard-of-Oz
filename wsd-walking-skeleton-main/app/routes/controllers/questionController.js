@@ -1,11 +1,12 @@
-import * as topicsService from "../../services/topicsService.js";
 import * as questionService from "../../services/questionService.js";
 import { validasaur } from "../../deps.js";
 
+// Minimum length requirements for question's text
 const questionValidationRules = {
     question_text: [validasaur.required, validasaur.minLength(1)],
 };
 
+// Retrieve question data from input form
 const getQuestionData = async (request, params) => {
     const body = request.body({ type: "form" });
     const paramsBody = await body.value;
@@ -17,43 +18,45 @@ const getQuestionData = async (request, params) => {
     };
 };
 
-const listQuestions = async ({ render, params }) => {
-    render("topicQuestions.eta", {
-        tId: params.tId,
-        topicName: await questionService.topicName(params.tId),
-        allQuestions: await questionService.listQuestions(params.tId),
-    });
+// List all the available questions for the current topic
+const listQuestions = async ({ render, params, request }) => {
+    render("topicQuestions.eta", await getQuestionData(request, params));
 };
 
+// Add a new question to the current topic
 const addQuestion = async ({ request, response, render, user, params }) => {
     const questionData = await getQuestionData(request, params);
     
     const [passes, errors] = await validasaur.validate(questionData, questionValidationRules,);
-        
+    // If the length requirement is not met, return a message and stay on the current page 
     if (!passes) {
-        console.log(errors);
         questionData.errors = errors;
         questionData.message = "Question should not be empty";
-        render("topicQuestions.eta", questionData);
-        return;
+        return render("topicQuestions.eta", questionData);
     }
+
+    // If question is OK, add it to the database and reload current topic page
     await questionService.addQuestion(user.id, params.tId, questionData.question_text);
     return response.redirect(`/topics/${params.tId}`);
 };
 
+// Delete a question
 const deleteQuestion = async ({ params, response }) => {
     await questionService.deleteQuestion(params.qId);
     return response.redirect(`/topics/${params.tId}`);
 };
 
-//////////////////////////////////////////////
-/////////////// O P T I O N S ////////////////
-//////////////////////////////////////////////
+   /////////////////////////////////////////////////////////
+  /////// T H I S --- P A R T --- IS --- F O R ////////////
+ /////// O P T I O N S --- C O N T R O L L E R S /////////
+/////////////////////////////////////////////////////////
 
+// Minimum length required for option
 const optionValidationRules = {
     option_text: [validasaur.required, validasaur.minLength(1)],
 };
 
+// Retrieve option data from input form
 const getOptionData = async (request) => {
     const body = request.body({ type: "form" });
     const params = await body.value;
@@ -63,8 +66,9 @@ const getOptionData = async (request) => {
     };
 };
 
+// List all the options for the current question
 const listQuestionOptions = async ({ params, render }) => {
-    render("topicQAs.eta", {
+    return render("topicQAs.eta", {
         topicId: params.tId,
         topicName: await questionService.topicName(params.tId),
         questionId: params.qId,
@@ -73,27 +77,29 @@ const listQuestionOptions = async ({ params, render }) => {
     });
 };
 
+// Add an option 
 const addOption = async ({ params, response, render, request }) => {
     const optionData = await getOptionData(request);
-    
+    // Check if the option met the length requirement
     const [passes, errors] = await validasaur.validate(
         optionData,
         optionValidationRules,
     );
-
+    
+    // If no, return a message below the current question page,
+    // otherwise, add the option to the database and reload the question page
     if (!passes) {
-        console.log(errors);
         optionData.errors = errors;
-        optionData.message = "Option should not be empty";
+        optionData.optionMessage = "Option should not be empty";
         render("topicQAs.eta", optionData);
         return;
     } else {
-        console.log(optionData.correctness)
         await questionService.addOption(params.qId, optionData.option_text, optionData.correctness);
         return response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
     }
 };
 
+// Delete an option from the database
 const deleteOption = async ({ params, response }) => {
     await questionService.deleteOption(params.qId, params.oId);
     response.redirect(`/topics/${params.tId}/questions/${params.qId}`);

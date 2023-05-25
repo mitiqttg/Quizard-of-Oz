@@ -5,13 +5,13 @@ ul {
 
 a, a:link, a:visited, a:active, h1, h2 { text-decoration: none !important; }
 
-a:hover { color:red; }
+a:hover { color:rgb(255, 8, 0); }
 
 form { display: inline-block; }
 
 h1, .cen, #collapsible-body { text-align: center; }
 
-.message, .incorrect{ color: rgb(255, 0, 0); }
+.message, .incorrect{ color: rgb(159, 105, 247); }
 
 .correct { color: rgb(29, 226, 12); }
 

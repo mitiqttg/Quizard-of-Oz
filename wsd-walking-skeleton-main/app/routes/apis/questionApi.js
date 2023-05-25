@@ -1,31 +1,29 @@
 import * as quizzesService from "../../services/quizzesService.js";
 
+// Select a random question from database 
 const randomSelectedQuestion = async ({ response }) => {
   const rows = await quizzesService.randomQuizAPI();
-
-  if (rows.length > 0) {
-    const questionId = rows.questionId;
-    const questionText = rows.questionText;
-    const answerOptions = rows.answerOptions.map(element => {
-      return {"optionId": element.id, "optionText": element.option_text };
-    });
-    response.body = {
-      "questionId": questionId,
-      "questionText": questionText,
-      "answerOptions": answerOptions
-    };
-  } else {
-    response.body = {};
+  console.log(rows);
+  console.log(rows.length);
+  const ans = rows.answerOptions;
+  console.log(ans);
+  console.log(typeof(ans));
+  function myFunction(element) {
+    return {"optionId": element.id, "optionText": element.option_text };
   }
+  rows.answerOptions =  ans.map(myFunction);
+  response.body = rows ? rows : {};
 };
 
-const verifyAnswer = async ({ response }) => {
+// Return an object for checking if the answer is correct to the posted data 
+// e.g. { "questionId": 1, "optionId": 3 } 
+const verifyAnswer = async ({ request, response }) => {
   const body = request.body({ type: "json" });
   const document = await body.value;
 
   const validate = await quizzesService.isCorrect(document.questionId, document.optionId);
 
-  response.body = { correct: validate[0] };
+  return response.body = { correct: validate };
 };
 
 export { randomSelectedQuestion, verifyAnswer };

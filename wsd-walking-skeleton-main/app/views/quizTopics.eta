@@ -1,6 +1,6 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1>Current topics for quiz</h1>
+<h2 class="highlight">Topics for quiz</h2>
 
 <% if (it.allTopics && it.allTopics.length > 0) { %>
     <ul>
@@ -16,5 +16,5 @@
         <p class="message"> <%=it.message%> </p>
     <% } %>
 <% } else { %>
-    <p>Out of topic.</p>
+    <p>No available topic.</p>
 <% } %> 

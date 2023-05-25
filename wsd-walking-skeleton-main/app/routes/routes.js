@@ -38,8 +38,7 @@ router.post("/auth/login", loginController.processLogin);
 router.get("/api/questions/random", questionApi.randomSelectedQuestion);
 router.post("/api/questions/answer", questionApi.verifyAnswer);
 
-router.get("/auth", mainController.showMain);
-router.get("/api", mainController.showMain);
+router.get("/auth", loginController.showLoginForm);
+router.get("/api", questionApi.randomSelectedQuestion);
 
 export { router };
-// https://unpkg.com/papercss@1.8.2/dist/paper.min.css 

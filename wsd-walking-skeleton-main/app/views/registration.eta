@@ -1,11 +1,14 @@
 <% layout('./layouts/layout.eta') %>
 
 <h1>Registration form</h1>
+
 <form method="POST" action="/auth/register">
-  Email: <input type="email" name="email" value="<%= it.email ? it.email:'' %>"/><br/>
+  Email: <input type="email" name="email" value="<%= it.emaildetail ? it.emaildetail:'' %>"/><br/>
   Password:  <input type="password" name="password" /><br/>
   <input type="submit" value="Register" />
 </form>
-<p> <%= it.emaildescription ? it.emaildescription:'' %> </p>
-<p> <%= it.pwdescription ? it.pwdescription:'' %> </p>
-<p> <a href="/auth/login">Already registered? Login here.</a> </p>
+<p class="message"> 
+  <%= it.emailDescription ? it.emailDescription : '' %>
+  <%= it.pwDescription ? it.pwDescription : '' %> 
+</p>
+<a href="/auth/login">Already registered? Login here.</a>

@@ -1,28 +1,40 @@
 import { bcrypt } from "../../deps.js";
 import * as userService from "../../services/userService.js";
 
+// Register users
 const registerUser = async ({ render, request, response }) => {
+  // Get the input data type "form"
   const body = request.body({ type: "form" });
   const params = await body.value;
-  
+
+  // Get email and password
   const email = params.get("email");
   const password = params.get("password");
-  const data = {};
-  const existEmail = await userService.findUserByEmail(email); 
-  if (existEmail && existEmail.length > 0) { 
-    data.emaildescription= "This email is already registered";
+
+  const userFromDatabase = await userService.findUserByEmail(email);
+  // Checking if the user is already registered, if yes return a message
+  if (userFromDatabase && userFromDatabase.length != 0) { 
+    return render("registration.eta", {
+      emaildetail: email,
+      emailDescription: "This email is already registered",
+    }); 
   }
-  if (password.length < 6) { 
-    data.pwdescription= "Password needs to be at least 6 character";
+
+  // Checking if the password satisfies length requirements (4 characters), if not return a message
+  if (password.length < 4) { 
+    return render("registration.eta", {
+      emaildetail: email,
+      pwDescription: "Password must contain minimum 4 characters",
+    });
   }
-  if (data && data.length >0) {
-    return render("registration.eta", data);
-  } else {
-    await userService.addUser(email, await bcrypt.hash(password));
-    return response.redirect("/auth/login");
-  }
+
+  // If email and password satisfy the requirements, add the user to database 
+  // and direct the user to login page
+  await userService.addUser(email, await bcrypt.hash(password));
+  return response.redirect("/auth/login");
 };
 
+// Show registration form
 const showRegistrationForm = ({ render }) => {
   render("registration.eta");
 };

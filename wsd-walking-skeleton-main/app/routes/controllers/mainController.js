@@ -1,5 +1,6 @@
 import * as statisticsService from "../../services/statisticsService.js";
 
+// This function shows main page of the application and statistics parameters
 const showMain = async ({ render }) => {
   const totalTopics = await statisticsService.totalTopics();
   const totalQuestions = await statisticsService.totalQuestions();

@@ -1,5 +1,6 @@
 import { sql } from "../database/database.js";
 
+// Return statistical parameters for the main page
 const totalTopics = async () => {
   const row = await sql`SELECT COUNT(id) as count FROM topics`;
   if (row && row[0]) {

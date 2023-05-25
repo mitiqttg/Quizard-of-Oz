@@ -1,7 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
 <% if (it.questionText && it.questionText.length > 0) { %>
-    <h2 class="question">Question: <%= it.questionText %> </h2>
+    <h2 class="highlight">Question: <%= it.questionText %> </h2>
     <% if (it.answerOptions && it.answerOptions.length > 0) { %>
       <ul>
         <% it.answerOptions.forEach(option => { %>

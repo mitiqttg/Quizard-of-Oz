@@ -1,10 +1,12 @@
 import * as topicsService from "../../services/topicsService.js";
 import { validasaur } from "../../deps.js";
 
+// Minimum length required for topic's name
 const topicValidationRules = {
   name: [validasaur.required, validasaur.minLength(1)],
 };
 
+// Retrieves topic data from the input form
 const getTopicData = async ( request, user ) => {
   const body = request.body({ type: "form" });
   const params = await body.value;
@@ -15,20 +17,22 @@ const getTopicData = async ( request, user ) => {
   };
 };
 
+// Add the topic to the database
 const addTopic = async ({ request, response, render, user }) => {
   const topicData = await getTopicData(request, user);
-
+  // Validate topic
   const [passes, errors] = await validasaur.validate(
     topicData,
     topicValidationRules,
   );
-
+  
+  // If the topic meets the length requirement, check if the name is unique,
+  // if it is, add the topic to the database and reload topics list page,
+  // otherwise, return the error message  
   if (!passes) {
-    console.log(errors);
     topicData.errors = errors;
     topicData.message = "Your topic name must be unique and have at least one character";
-    render("topicsList.eta", topicData);
-    return;
+    return render("topicsList.eta", topicData);
   } else {
     const nameisUnique = await topicsService.uniqueName(topicData.name);
     if (nameisUnique) {
@@ -36,17 +40,18 @@ const addTopic = async ({ request, response, render, user }) => {
       return response.redirect("/topics");
     } else {
       topicData.message = "Your topic name must be unique and have at least one character";
-      render("topicsList.eta", topicData);
-      return;
+      return render("topicsList.eta", topicData);
     }
   }
 };
 
+// Delete the topic with id
 const deleteTopic = async ({ params, response }) => {
   await topicsService.deleteTopic(params.id);
   return response.redirect("/topics");
 };
 
+// List all the topics 
 const listTopics = async ({ render, user }) => {
   render("topicsList.eta", {
     allTopics: await topicsService.listTopics(),

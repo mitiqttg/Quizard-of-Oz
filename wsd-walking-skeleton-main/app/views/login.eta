@@ -4,13 +4,13 @@
 
 <form method="POST" action="/auth/login">
   Email:<br/>
-  <input type="email" name="email" /> <br/>
+  <input type="email" name="email" value="<%= it.email ? it.email:'' %>"/> <br/>
   Password:<br/>
   <input type="password" name="password"/> <br/>
   <input type="submit" value="Login" />
 </form>
 <p class="message"> 
-<%= it.emailDetail ? it.emailDetail:'' %>
-<%= it.passwordDetail ? it.passwordDetail:'' %>
+  <%= it.emailDetail ? it.emailDetail:'' %>
+  <%= it.passwordDetail ? it.passwordDetail:'' %>
 </p>
 <a href="/auth/register">Not yet registered? Register here.</a>
