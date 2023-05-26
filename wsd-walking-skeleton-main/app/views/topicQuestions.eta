@@ -2,8 +2,8 @@
 
 <h1 class="highlight centering"> <%= it.topicName %> </h1>
 
+<h3>Current questions</h3>
 <% if (it.allQuestions && it.allQuestions.length > 0) { %>
-  <h3>Current questions</h3>
   <ul>
   <% it.allQuestions.forEach(question => { %>
     <li> 
@@ -17,7 +17,7 @@
   <% }); %>
   </ul> <br/>
 <% } else { %>
-  <p class="highlight centering">Out of question.</p>
+  <p class="highlight centering">Out of question</p>
 <% } %>
 
 <form method="POST" action="/topics/<%= it.tId %>/questions">
