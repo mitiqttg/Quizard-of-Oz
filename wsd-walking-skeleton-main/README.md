@@ -11,10 +11,10 @@ The application runs locally with Docker Compose.
 - To start the application, open up the terminal in the folder that
   contains the `docker-compose.yml` file, in my case, you can right click on wsd-walking-skeleton-main, 
   choose ```Open in Intergrated Terminal ```,<br> 
-  <img src="./pics/terminal.png" alt="Intergrated Terminal" style="height: 400px; width:700px;"/>
+  <img src="./pics/terminal.png" alt="Intergrated Terminal" style="height: 400px; width:300px;"/>
 
   then type ```docker-compose up``` to terminal, click Enter and wait for a bit...<br>
-  <img src="./pics/startdocker.png" alt="docker" style="height: 300px; width:700px;"/>
+  <img src="./pics/startdocker.png" alt="docker" style="height: 200px; width:700px;"/>
 
   Finally, go to "http://localhost:7777/" to experience the application.
 
@@ -28,4 +28,4 @@ The application runs locally with Docker Compose.
 To test the application locally, you must first launch the application by in docker as the above instructions.
 To run E2E tests, go to the same root as when you launch the project above, using the following command:
 ```docker-compose run --entrypoint=npx e2e-playwright playwright test```<br>
-  <img src="./pics/startTest.png" alt="E2E test" style="height: 300px; width:700px;"/>
+  <img src="./pics/startTest.png" alt="E2E test" style="height: 200px; width:1000px;"/>
