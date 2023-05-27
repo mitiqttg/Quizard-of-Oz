@@ -6,11 +6,16 @@ const randomSelectedQuestion = async ({ response }) => {
   const ans = rows.answerOptions;
 
   function myFunction(element) {
-    return {"optionId": element.id, "optionText": element.option_text };
+    return { "optionId": element.id, "optionText": element.option_text };
   }
-  rows.answerOptions =  ans.map(myFunction);
-  
-  return response.body = rows ? rows : {};
+
+  if (rows !== -1) {
+    rows.answerOptions = ans.map(myFunction);
+    if (rows) {
+      return response.body = rows;
+    }
+  }
+  return response.body = {};
 };
 
 // Return an object for checking if the answer is correct to the posted data 
@@ -19,9 +24,9 @@ const verifyAnswer = async ({ request, response }) => {
   const body = request.body({ type: "json" });
   const document = await body.value;
 
-  const validate = await quizzesService.isCorrect(document.questionId, document.optionId);
+  const correctness = await quizzesService.isCorrect(document.questionId, document.optionId);
 
-  return response.body = { correct: validate };
+  return response.body = { correct: correctness };
 };
 
 export { randomSelectedQuestion, verifyAnswer };
