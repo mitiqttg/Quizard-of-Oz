@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+h1 {
+  color: blue;
+}
+
+p, .stats {
+  color: rgb(44, 34, 34);
+  border: 2px solid powderblue;
+  padding: 30px;
+  margin: 50px;
+}
+
+a:hover { color:rgb(255, 8, 0); }
+form { display: inline-block; }
+h1, .centering, #inline { text-align: center; }
+.message, .incorrect{ color: rgb(255, 0, 0); }
+.correct { color: rgb(29, 226, 12); }
+.highlight { color: #327bf0; }
+
+textarea, input[type=text] {
+  height: 50px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  width: 400px !important;
+  border: 2px solid #327bf0;
+  border-radius: 4px;
+  background-color: beige;
+  font-size: 16px;
+  resize: none;
+}
+
+#collapsible-body { display: inline-block !important; }
+    
+#nav, .border, .fixed, .split-nav {
+  justify-content: center !important;
+}
+nav ul.inline {
+  display: inline-block !important;
+  margin-bottom: 8px !important;
+}
+
+.border, .fixed, .split-nav {
+  background-image: radial-gradient(circle, #20f803 0%, #0400ff 100%);
+}
+
+div.checkbox {
+  display: flex;
+  justify-content: space-between;
+}

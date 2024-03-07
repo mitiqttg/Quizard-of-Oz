@@ -4,54 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://unpkg.com/papercss@1.9.1/dist/paper.css">
-  <title>Quizzes!</title>
-  <style> 
-    h1, h2 { text-decoration: none !important; }
+  <style>
+    body {
+    background-color: rgb(255, 255, 255);
+}
 
-    a:hover { color:rgb(255, 8, 0); }
+h1 {
+  color: blue;
+}
 
-    form { display: inline-block; }
+p {
+  color: rgb(44, 34, 34);
+  margin: 50px;
+}
+.statsDiv {
+  color: rgb(44, 34, 34);
+  border: 5px solid powderblue;
+  padding: 30px;
+  margin: 20px;
+  text-align: left;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+a:hover { color:rgb(255, 8, 0); }
+form { display: inline-block; }
+h1, .centering, #inline { text-align: center; }
+.message, .incorrect{ color: rgb(255, 0, 0); }
+.correct { color: rgb(29, 226, 12); }
+.highlight { color: #327bf0; }
 
-    h1, .centering, #inline { text-align: center; }
+textarea, input[type=text] {
+  height: 50px;
+  
+  box-sizing: border-box;
+  width: 400px !important;
+  border: 2px solid #327bf0;
+  border-radius: 4px;
+  background-color: beige;
+  font-size: 16px;
+  resize: none;
+}
 
-    .message, .incorrect{ color: rgb(255, 0, 0); }
-
-    .correct { color: rgb(29, 226, 12); }
-
-    .highlight { color: #327bf0; }
-
-    body { background-color: #b48ff0; }
-
-    textarea, input[type=text] {
-      height: 50px;
-      padding: 12px 20px;
-      box-sizing: border-box;
-      width: 400px !important;
-      border: 2px solid #327bf0;
-      border-radius: 4px;
-      background-color: beige;
-      font-size: 16px;
-      resize: none;
-    }
-    #collapsible-body { display: inline-block !important; }
+#collapsible-body { display: inline-block !important; }
     
-    #nav, .border, .fixed, .split-nav {
-      justify-content: center !important;
-    }
+#nav, .border, .fixed, .split-nav {
+  justify-content: center !important;
+}
+nav ul.inline {
+  display: inline-block !important;
+  margin-bottom: 8px !important;
+}
 
-    nav ul.inline {
-      display: inline-block !important;
-      margin-bottom: 8px !important;
-    }
-    .border, .fixed, .split-nav {
-      background-image: radial-gradient(circle, #20f803 0%, #0400ff 100%);
-    }
-    div.checkbox {
-      display: flex;
-      justify-content: space-between;
-    }
+.border, .fixed, .split-nav {
+  background-image: radial-gradient(circle, #20f803 0%, #0400ff 100%);
+}
+
+div.checkbox {
+  display: flex;
+  justify-content: space-between;
+}
   </style>
+  <title>Let's quiz</title>
+  
 </head>  
 <body>
   <% if (it.user) { %>

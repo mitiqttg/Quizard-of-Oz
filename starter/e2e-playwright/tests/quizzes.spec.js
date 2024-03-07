@@ -11,11 +11,12 @@ test("Main page has expected title and statistics", async ({ page }) => {
         "Total number of questions answered:", 
         "Total number of users:")).toBeVisible();
 });
+
 const userEmail = `haha${Math.random()*10}@hihi.com`;
 const userPassword = `123456haha${Math.random()*10}`;
+
 test("Can register", async ({ page }) => {
       await page.goto("http://localhost:7777/auth/register");
-
       await expect(page.getByRole('link')).toHaveText("Already registered? Login here.");
       await page.locator("input[type=email]").type(userEmail);
       await page.locator("input[type=password]").type(userPassword);

@@ -1,16 +1,20 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1 class="highlight">Practice application</h1>
+<h1 class="highlight">Practice makes perfect</h1>
 
-<p> This application is used for repeated practice of learned content. </p>
-<p> In this main page, you can see stastistical parameters of the application  </p>
-<p> In topics, you can see available topics; you can add questions and options according to the topic.</p>
-<p> In quiz, you can practice with questions from available topics.</p>
+<p> This application is used for repeated practice of learned content. </br>
+ Topics: you can add questions and options according to the available topic. </br>
+ Quiz: you can practice with questions from topics.</p>
 
-<p>Newbie? You can start by <a href="/auth/register">REGISTERING</a>. If you have been here before, just <a href="/auth/login">LOG IN</a>!</p>
+<p><a href="/auth/register">Register here</a>. Already have account, just <a href="/auth/login">LOG IN</a>!</p>
 
-<h3 class="highlight">Statistics!</h3>
-<p>Total number of topics: <%= it.totalTopics %></p> 
-<p>Total number of questions: <%= it.totalQuestions %></p> 
-<p>Total number of questions answers: <%= it.totalAnswers %></p>
-<p>Total number of users: <%= it.totalUsers %></p>
+<div class="statsDiv">
+    <h3 class="centering">Statistics!</h3></br>
+    <p>
+        Number of </br>
+        - Users: <%= it.totalUsers %></br> 
+        - Topics: <%= it.totalTopics %> </br>
+        - Questions: <%= it.totalQuestions %></br> 
+        - Answers: <%= it.totalAnswers %>
+    </p>
+</div>

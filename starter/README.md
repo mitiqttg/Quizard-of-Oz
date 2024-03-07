@@ -2,7 +2,7 @@
 An application that can be used to create quizzes in topics and practicing random quizzes from the database.
 
 ## Online deployment:
-The application can be found at this link: "https://apexpred.fly.dev/"
+The application can be found at this link: ""
 
 ## Local deployment: Starting and shutting down
 
