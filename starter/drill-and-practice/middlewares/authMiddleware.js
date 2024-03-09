@@ -2,6 +2,9 @@ const restrictedPaths = ["/topics", "/quiz"];
 
 const authMiddleware = async (context, next) => {
   const user = await context.state.session.get("user");
+  if (user) {
+    context.user = user;
+  }
   if (
     !user &&
     restrictedPaths.some((path) =>
@@ -15,3 +18,4 @@ const authMiddleware = async (context, next) => {
 };
 
 export { authMiddleware };
+

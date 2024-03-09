@@ -5,9 +5,10 @@
 
 <% if (it.correctOptions && it.correctOptions.length > 0 ) {%>
     <% it.correctOptions.forEach(option => { %>
-        <p>&#10024; <%= option.option_text %> </p> <br/>
+        <p class="textbox" >&#10024; <%= option.option_text %> </p> <br/>
     <% }) %>
 <% } %>
 <a class="centering" href="/quiz/<%= it.tId %>">
     Next question
 </a> 
+

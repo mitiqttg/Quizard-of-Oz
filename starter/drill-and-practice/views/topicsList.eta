@@ -10,10 +10,10 @@
 <% if (it.allTopics && it.allTopics.length > 0) { %>
   <ul>
   <% it.allTopics.forEach(topic => { %>
-    <li> 
-      <a href="/topics/<%= topic.id %>">
-        <%= topic.name %>
-      </a> 
+    <li > 
+      <form method="GET" action="/topics/<%= topic.id %>">
+          <input type="submit" value="<%= topic.name %>"/>
+      </form>
       <% if (it.isAdmin) { %>
         <form method="POST" action="/topics/<%= topic.id %>/delete">
           <input type="submit" value="Delete"/>
@@ -25,6 +25,7 @@
 <% } else { %>
   <h3 class="highlight">Out of topic.</h3>
 <% } %>
+
 <% if (it.isAdmin) { %>
   <h2>Add a topic!</h2>
   <form method="POST" action="/topics">

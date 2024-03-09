@@ -5,100 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
-    body {
+  body {
     background-color: rgb(255, 255, 255);
-}
+  }
 
-h1 {
-  color: blue;
-}
+  h1 {
+    color: blue;
+  }
 
-p {
-  color: rgb(44, 34, 34);
-  margin: 50px;
-}
-.statsDiv {
-  color: rgb(44, 34, 34);
-  border: 5px solid powderblue;
-  padding: 30px;
-  margin: 20px;
-  text-align: left;
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-a:hover { color:rgb(255, 8, 0); }
-form { display: inline-block; }
-h1, .centering, #inline { text-align: center; }
-.message, .incorrect{ color: rgb(255, 0, 0); }
-.correct { color: rgb(29, 226, 12); }
-.highlight { color: #327bf0; }
+  p {
+    color: rgb(44, 34, 34);
+    margin: 50px;
+  }
 
-textarea, input[type=text] {
-  height: 50px;
-  
-  box-sizing: border-box;
-  width: 400px !important;
-  border: 2px solid #327bf0;
-  border-radius: 4px;
-  background-color: beige;
-  font-size: 16px;
-  resize: none;
-}
+  .statsDiv {
+    color: rgb(44, 34, 34);
+    border: 3px solid rgb(186, 186, 240);
+    padding: 30px;
+    margin: 20px;
+    text-align: left;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-#collapsible-body { display: inline-block !important; }
-    
-#nav, .border, .fixed, .split-nav {
-  justify-content: center !important;
-}
-nav ul.inline {
-  display: inline-block !important;
-  margin-bottom: 8px !important;
-}
+  .info {
+    color: rgb(44, 34, 34);
+    text-align: left;
+    width: 80%;
+    padding: 30px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-.border, .fixed, .split-nav {
-  background-image: radial-gradient(circle, #20f803 0%, #0400ff 100%);
-}
+  .parent {
+    background-color: rgb(186, 186, 240);
+      border: 3px solid rgb(186, 186, 240);
+    padding: 30px;
+    margin: 20px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    grid-template-columns: 1fr 1fr;
+        top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } 
 
-div.checkbox {
-  display: flex;
-  justify-content: space-between;
-}
+  .textbox { 
+		width: 100%; 
+		padding: 10px; 
+		font-size: 16px; 
+		border-radius: 5px; 
+		border: 1px solid #ccc; 
+		box-sizing: border-box; 
+		margin-bottom: 20px; 
+    display: flex;
+	} 
+  .buttonBox { 
+    background-color: rgb(88, 116, 238);
+		width: 40%; 
+		padding: 10px; 
+		font-size: 16px; 
+		border-radius: 5px; 
+		border: 1px solid #ccc; 
+		box-sizing: border-box; 
+		margin-bottom: 20px; 
+    display: flex;
+	} 
+
+  a:hover { color:rgb(255, 8, 0); }
+  form { display: inline-block; }
+  h1, .centering, #inline { text-align: center; }
+  .message, .incorrect{ color: rgb(255, 0, 0); }
+  .correct { color: rgb(29, 226, 12); }
+  .highlight { color: #327bf0; }
+
+  textarea, input[type=text] {
+    height: 50px;
+
+    box-sizing: border-box;
+    width: 400px !important;
+    border: 2px solid #327bf0;
+    border-radius: 4px;
+    background-color: beige;
+    font-size: 16px;
+    resize: none;
+  }
+
+  #collapsible-body { display: inline-block !important; }
+      
+  #nav, .border, .fixed, .split-nav {
+    justify-content: center !important;
+  }
+
+  nav ul.inline {
+    display: inline-block !important;
+    margin-bottom: 8px !important;
+  }
+
+  .border, .fixed, .split-nav {
+    background-image: radial-gradient(circle, #20f803 0%, #0400ff 100%);
+  }
+
+  div.checkbox {
+    display: flex;
+    justify-content: space-between;
+  }
   </style>
   <title>Let's quiz</title>
   
 </head>  
 <body>
-  <% if (it.user) { %>
+  <% if (!it.user) { %>
     <nav class="border fixed split-nav">   
       <div class="collapsible">
-        <input id="collapsible1" type="checkbox" name="collapsible1">
-        <label for="collapsible1">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-          <div class="bar4"></div>
-        </label>
+        
         <div class="collapsible-body">
-          <ul class="inline">
-              <li><a href="/">Main page</a></li>
-              <li><a href="/topics" style="margin-right: 30px !important; margin-left: 30px !important;">Topics</a></li>
-              <li><a href="/quiz" style="margin-right: 30px !important;">Quiz</a></li>
-              <li>
+              <form method="GET" action="/">
+                  <input type="submit" value="Main page"/>
+              </form>
+             
+              <form method="GET" action="/topics">
+                  <input type="submit" value="Topics"/>
+              </form>
+             
+              <form method="GET" action="/quiz">
+                  <input type="submit" value="Quiz"/>
+              </form>
                   <form method="POST" action="/auth/logout" style="background-color:red;">
                     <input type="submit" value="Log out"/>
                   </form>
               </li>
-          </ul>
+
         </div>
       </div>
     </nav>
   <% } %>
-  <div class="paper container">
+  <div class="">
     <%~ it.body %>
   </div>
 </body>

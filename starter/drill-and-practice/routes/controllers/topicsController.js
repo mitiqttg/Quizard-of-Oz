@@ -19,7 +19,7 @@ const getTopicData = async ( request, user ) => {
 
 // Add the topic to the database
 const addTopic = async ({ request, response, render, user }) => {
-  if (topicsService.isAdmin(user.id)) {
+  if (user.admin) {
     const topicData = await getTopicData(request, user);
     // Validate topic
     const [passes, errors] = await validasaur.validate(
@@ -61,7 +61,7 @@ const deleteTopic = async ({ params, response, user }) => {
 const listTopics = async ({ render, user }) => {
   render("topicsList.eta", {
     allTopics: await topicsService.listTopics(),
-    isAdmin: await topicsService.isAdmin(user.id),
+    isAdmin: user.admin,
   });
 };
 

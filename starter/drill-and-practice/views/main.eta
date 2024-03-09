@@ -1,20 +1,21 @@
 <% layout('./layouts/layout.eta') %>
 
 <h1 class="highlight">Practice makes perfect</h1>
+<div class="info">
+<p class=""> This app uses repetitive practice of input content. </br>
+ <strong>Quiz:</strong> you can practice with questions from topics.</br>
+ <strong>Topics:</strong> you can add questions and options in available topics. </br>
+ <a href="/auth/login">Log in here</a>. <em>No account?</em> <a href="/auth/register">Register here</a>.</p>
+</div>
 
-<p> This application is used for repeated practice of learned content. </br>
- Topics: you can add questions and options according to the available topic. </br>
- Quiz: you can practice with questions from topics.</p>
-
-<p><a href="/auth/register">Register here</a>. Already have account, just <a href="/auth/login">LOG IN</a>!</p>
-
+<div class="parent">
+    <h3 class="highlight">Statistics</h3>
+</div>
 <div class="statsDiv">
-    <h3 class="centering">Statistics!</h3></br>
-    <p>
-        Number of </br>
-        - Users: <%= it.totalUsers %></br> 
-        - Topics: <%= it.totalTopics %> </br>
-        - Questions: <%= it.totalQuestions %></br> 
-        - Answers: <%= it.totalAnswers %>
+    <p> Number of...</br>
+        Users: <%= it.totalUsers %></br> 
+        Topics: <%= it.totalTopics %> </br>
+        Questions: <%= it.totalQuestions %></br> 
+        Answers: <%= it.totalAnswers %></br> 
     </p>
 </div>

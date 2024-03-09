@@ -5,7 +5,7 @@
 <% if (it.allOptions && it.allOptions.length > 0) { %>
     <ul>
     <% it.allOptions.forEach(option => { %>
-        <li> 
+        <li > 
             <%= option.option_text %>
             <% if (option.is_correct) { %>
                 <span>&#9989;</span>

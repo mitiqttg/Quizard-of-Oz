@@ -3,14 +3,14 @@
 <h1 class="highlight">Login form</h1>
 
 <form method="POST" action="/auth/login">
-  Email:<br/>
-  <input type="email" name="email" value="<%= it.email ? it.email:'' %>"/> <br/>
-  Password:<br/>
-  <input type="password" name="password"/> <br/>
+  <div class="textbox">Email</div>
+  <input class="textbox" type="email" name="email" value="<%= it.email ? it.email:'' %>"/> <br/>
+  <div class="textbox">Password</div>
+  <input class="textbox" type="password" name="password"/> <br/>
   <input type="submit" value="Login" />
 </form>
 <p class="message"> 
   <%= it.emailDetail ? it.emailDetail:'' %>
   <%= it.passwordDetail ? it.passwordDetail:'' %>
 </p>
-<a class="centering" href="/auth/register">Not yet registered? Register here.</a>
+<a class="centering" href="/auth/register">No account? Register here.</a>

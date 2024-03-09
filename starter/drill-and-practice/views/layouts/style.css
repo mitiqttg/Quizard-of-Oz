@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  color: blue;
+  color: rgb(186, 186, 240);
 }
 
 p, .stats {
@@ -13,7 +13,7 @@ p, .stats {
   margin: 50px;
 }
 
-a:hover { color:rgb(255, 8, 0); }
+a:hover { color:rgb(88, 116, 238); }
 form { display: inline-block; }
 h1, .centering, #inline { text-align: center; }
 .message, .incorrect{ color: rgb(255, 0, 0); }
