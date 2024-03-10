@@ -3,10 +3,10 @@
 <h1 class="highlight">Login form</h1>
 
 <form method="POST" action="/auth/login">
-  <div class="textbox">Email</div>
-  <input class="textbox" type="email" name="email" value="<%= it.email ? it.email:'' %>"/> <br/>
-  <div class="textbox">Password</div>
-  <input class="textbox" type="password" name="password"/> <br/>
+  <label for="email" class="textbox">Email</label>
+  <input class="textbox" id="email" type="email" name="email" value="<%= it.email ? it.email:'' %>"/> <br/>
+  <label for="pw" class="textbox">Password</label>
+  <input class="textbox" id="pw" type="password" name="password"/> <br/>
   <input type="submit" value="Login" />
 </form>
 <p class="message"> 

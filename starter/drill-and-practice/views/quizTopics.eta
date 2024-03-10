@@ -3,15 +3,12 @@
 <h2 class="highlight centering">Topics for quiz</h2>
 
 <% if (it.allTopics && it.allTopics.length > 0) { %>
-    <ul>
     <% it.allTopics.forEach(topic => { %>
-        <li> 
-            <a href="/quiz/<%= topic.id %>">
-                <%= topic.name %>
-            </a> 
-        </li>
+            <form class="colorBox" method="GET" action="/quiz/<%= topic.id %>">
+                <input type="submit" value="<%= topic.name %>"/>
+            </form>
+            <br/>
     <% }); %>
-    </ul>
     <% if (it.message) { %>
         <p class="message centering"> <%=it.message%> </p>
     <% } %>

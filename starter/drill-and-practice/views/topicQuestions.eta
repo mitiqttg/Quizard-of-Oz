@@ -4,18 +4,16 @@
 
 <h3>Current questions</h3>
 <% if (it.allQuestions && it.allQuestions.length > 0) { %>
-  <ul>
   <% it.allQuestions.forEach(question => { %>
-    <li> 
-      <a href="/topics/<%= it.tId %>/questions/<%= question.id %>" class="textbox">
-        <%= question.question_text %>
-      </a> 
+      <form method="GET" class="textbox" action="/topics/<%= it.tId %>/questions/<%= question.id %>">
+        <input type="submit" value="<%= question.question_text %>"/>
+      </form>
       <form method="POST" action="/topics/<%= it.tId %>/questions/<%= question.id %>/delete">
         <input type="submit" value="Delete"/>
       </form>
-    </li>
+      <br/>
   <% }); %>
-  </ul> <br/>
+ 
 <% } else { %>
   <p class="highlight centering">Out of question</p>
 <% } %>

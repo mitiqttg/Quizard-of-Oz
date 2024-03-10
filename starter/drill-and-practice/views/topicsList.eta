@@ -1,29 +1,28 @@
 <% layout('./layouts/layout.eta') %>
 
 <% if (it.isAdmin) { %>
-  <h1 class="highlight">Welcome boss!</h1>
+  <h1 class="highlight">Welcome Sir</h1>
 <% } else { %>
-  <h1 class="highlight">Good morning, sunshine! &#9788;</h1>
+  <h1 class="highlight">Welcome &#9788;</h1>
 <% } %>
 
 <h2>Current topics!</h2>
 <% if (it.allTopics && it.allTopics.length > 0) { %>
-  <ul>
+  
   <% it.allTopics.forEach(topic => { %>
-    <li > 
-      <form method="GET" action="/topics/<%= topic.id %>">
-          <input type="submit" value="<%= topic.name %>"/>
+      <form method="GET" action="/topics/<%= topic.id %>" >
+      <input  class="colorBox" type="submit" value=" <%= topic.name %>" />
       </form>
       <% if (it.isAdmin) { %>
         <form method="POST" action="/topics/<%= topic.id %>/delete">
-          <input type="submit" value="Delete"/>
-        </form>
+          <input class="colorBoxRed" type="submit" value="Delete"/>
+        </form> 
       <% } %>
-    </li>
+      <br />
   <% }); %>
-  </ul>
+
 <% } else { %>
-  <h3 class="highlight">Out of topic.</h3>
+  <h3 class="highlight">No topic.</h3>
 <% } %>
 
 <% if (it.isAdmin) { %>

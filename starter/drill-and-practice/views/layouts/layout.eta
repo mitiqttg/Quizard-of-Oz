@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
   body {
-    background-color: rgb(255, 255, 255);
+    background-color:  radial-gradient(#74d4f1, #ffffff);
   }
 
   h1 {
@@ -72,9 +72,10 @@
 		margin-bottom: 20px; 
     display: flex;
 	} 
+
   .buttonBox { 
-    background-color: rgb(88, 116, 238);
-		width: 40%; 
+    background-color: rgb(29, 127, 218);
+		width: 100%; 
 		padding: 10px; 
 		font-size: 16px; 
 		border-radius: 5px; 
@@ -83,6 +84,88 @@
 		margin-bottom: 20px; 
     display: flex;
 	} 
+  .buttonBox:hover {
+    background-color: rgb(72, 146, 216);
+  }
+
+  .colorBox { 
+    background-color: rgb(114, 203, 245);
+		width: 100%; 
+		padding: 10px; 
+		font-size: 16px; 
+		border-radius: 5px; 
+		border: 1px solid #ccc; 
+		margin-bottom: 20px; 
+    display: flex;
+    justify-content: center;
+	} 
+  .colorBox:hover {
+    background-color: rgb(5, 238, 238);
+  }
+	
+
+  .colorBoxRed { 
+    background-color:rgb(226, 64, 64);
+		width: 100%; 
+		padding: 10px; 
+		font-size: 16px; 
+		border-radius: 5px; 
+		border: 1px solid #ccc; 
+		margin-bottom: 20px; 
+    display: flex;
+    justify-content: center;
+	} 
+
+  .colorBoxRed:hover {
+    background-color: rgb(226, 100, 100);
+  }
+  .colorBoxNav { 
+    background-color: rgb(177, 2, 2);
+		width: 100%; 
+		padding: 10px; 
+		font-size: 16px; 
+		border-radius: 5px; 
+		border: 1px solid #ccc; 
+		margin-bottom: 20px; 
+    display: flex;
+    justify-content: center;
+	} 
+
+  .colorBoxNav:hover {
+    background-color: rgb(252, 58, 58);;
+  }
+
+  .correctBox { 
+    background-color: rgb(56, 155, 47);
+		width: 100%; 
+		padding: 10px; 
+		font-size: 16px; 
+		border-radius: 5px; 
+		border: 1px solid #ccc; 
+		margin-bottom: 20px; 
+    display: flex;
+    justify-content: center;
+	} 
+
+  .correctBox:hover {
+    background-color: rgb(74, 151, 67);
+  }
+
+  .incorrectBox { 
+    background-color: rgb(56, 155, 47);
+		width: 100%; 
+		padding: 10px; 
+		font-size: 16px; 
+		border-radius: 5px; 
+		border: 1px solid #ccc; 
+		margin-bottom: 20px; 
+    display: flex;
+    justify-content: center;
+	} 
+
+  .incorrectBox:hover {
+    background-color: rgb(74, 151, 67);
+  }
 
   a:hover { color:rgb(255, 8, 0); }
   form { display: inline-block; }
@@ -93,7 +176,6 @@
 
   textarea, input[type=text] {
     height: 50px;
-
     box-sizing: border-box;
     width: 400px !important;
     border: 2px solid #327bf0;
@@ -106,7 +188,7 @@
   #collapsible-body { display: inline-block !important; }
       
   #nav, .border, .fixed, .split-nav {
-    justify-content: center !important;
+    justify-content: center;
   }
 
   nav ul.inline {
@@ -114,8 +196,8 @@
     margin-bottom: 8px !important;
   }
 
-  .border, .fixed, .split-nav {
-    background-image: radial-gradient(circle, #20f803 0%, #0400ff 100%);
+  .bckgrnd {
+    background: radial-gradient(#74d4f1, #ffffff);
   }
 
   div.checkbox {
@@ -126,33 +208,32 @@
   <title>Let's quiz</title>
   
 </head>  
-<body>
-  <% if (!it.user) { %>
+
+<body class="bckgrnd">
+
     <nav class="border fixed split-nav">   
-      <div class="collapsible">
         
         <div class="collapsible-body">
               <form method="GET" action="/">
-                  <input type="submit" value="Main page"/>
+                  <input class="buttonBox" type="submit" value="Main page"/>
               </form>
              
               <form method="GET" action="/topics">
-                  <input type="submit" value="Topics"/>
+                  <input class="buttonBox" type="submit" value="Topics"/>
               </form>
              
               <form method="GET" action="/quiz">
-                  <input type="submit" value="Quiz"/>
+                  <input class="buttonBox" type="submit" value="Quiz"/>
               </form>
-                  <form method="POST" action="/auth/logout" style="background-color:red;">
-                    <input type="submit" value="Log out"/>
-                  </form>
-              </li>
-
+              <% if (it.user) { %>
+                <form method="POST" action="/auth/logout">
+                  <input class="buttonBox" type="submit" value="Log out"/>
+                </form>
+              <% } %>
         </div>
-      </div>
     </nav>
-  <% } %>
-  <div class="">
+
+  <div>
     <%~ it.body %>
   </div>
 </body>

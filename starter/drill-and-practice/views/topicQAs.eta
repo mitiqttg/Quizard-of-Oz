@@ -3,21 +3,17 @@
 <h1> Topic: <a href="/topics/<%= it.topicId %>"> <%= it.topicName %> </a> </h1>
 <h3 style="color:#327bf0;"> Questions: <%= it.questionText %> </h3>
 <% if (it.allOptions && it.allOptions.length > 0) { %>
-    <ul>
     <% it.allOptions.forEach(option => { %>
-        <li > 
-            <%= option.option_text %>
             <% if (option.is_correct) { %>
-                <span>&#9989;</span>
+                <p class="correctBox"><%= option.option_text %> </p>
             <% } else {%>
-                <span>&#10060;</span>
+                <p class="colorBoxRed"><%= option.option_text %> </p>
             <% } %>
             <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= option.id %>/delete">
-              <input type="submit" value="Delete option"/>
+              <input class="colorBoxRed" type="submit" value="Delete option"/>
             </form>
-        </li>
+            <br/>
     <% }); %>
-    </ul>
 <% } else { %>
     <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/delete">
         <input type="submit" value="Delete question"/>
@@ -27,9 +23,9 @@
     <h3>Add a option below</h3>
     <div class="checkbox">
     <textarea name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea>
-    <div style="margin-left: 5%;">
+    <div class="correctBox" style="margin-left: 5%;">
         <label for="is_correct">Correct</label>
-        <input type="checkbox" id="is_correct" name="is_correct" />
+        <input type="checkbox " id="is_correct" name="is_correct" />
     </div>
     </div> <br/>
     <input type="submit" value="Add option"/><br/>
