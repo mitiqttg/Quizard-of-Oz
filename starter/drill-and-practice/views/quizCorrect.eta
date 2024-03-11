@@ -5,10 +5,10 @@
 
 <% if (it.correctOptions && it.correctOptions.length > 0 ) {%>
     <% it.correctOptions.forEach(option => { %>
-        <p class="textbox" >&#10024; <%= option.option_text %> </p> <br/>
+        <form class="correctBox" > <%= option.option_text %> </form> <br/>
     <% }) %>
 <% } %>
 
-<form method="GET" class="colorBox" action="/quiz/<%= it.tId %>">
-  <input type="submit" value="Next question"/>
+<form method="GET" action="/quiz/<%= it.tId %>">
+  <input class="buttonBox" type="submit" value="Next question"/>
 </form>

@@ -14,6 +14,7 @@ const getTopicData = async ( request, user ) => {
     name : params.get("name"),
     allTopics : await topicsService.listTopics(),
     isAdmin : await topicsService.isAdmin(user.id),
+    user: user,
   };
 };
 
@@ -62,6 +63,7 @@ const listTopics = async ({ render, user }) => {
   render("topicsList.eta", {
     allTopics: await topicsService.listTopics(),
     isAdmin: user.admin,
+    user: user,
   });
 };
 

@@ -6,7 +6,7 @@
   <h1 class="highlight">Welcome &#9788;</h1>
 <% } %>
 
-<h2>Current topics!</h2>
+<h2>Current topics</h2>
 <% if (it.allTopics && it.allTopics.length > 0) { %>
   
   <% it.allTopics.forEach(topic => { %>
@@ -26,10 +26,13 @@
 <% } %>
 
 <% if (it.isAdmin) { %>
-  <h2>Add a topic!</h2>
+  <h2>Add topic</h2>
   <form method="POST" action="/topics">
-    Name: <input type="text" name="name" value="<%= it.errors ? it.errors.name.required : '' %>"/>
-    <input type="submit" value="Add topic"/>
+    <div class="setting">
+    <label for="name" >Name</label>
+    <input id="name" class="justBox" name="name" value="<%= it.errors ? it.errors.name.required : '' %>"/> 
+    <input class="buttonBox" type="submit" value="Add topic"/>
+  </div>
   </form>
 <% } %>
 <p class="message centering"> <%= it.message ? it.message : "" %> </p>

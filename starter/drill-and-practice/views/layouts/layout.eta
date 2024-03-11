@@ -5,205 +5,211 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
-  body {
-    background-color:  radial-gradient(#74d4f1, #ffffff);
-  }
+    body {
+      background-color:  radial-gradient(#2C2C54, #434380);
+    }
 
-  h1 {
-    color: blue;
-  }
+    h1 {
+      color: blue;
+    }
 
-  p {
-    color: rgb(44, 34, 34);
-    margin: 50px;
-  }
+    p {
+      color: rgb(44, 34, 34);
+      margin: 50px;
+    }
 
-  .statsDiv {
-    color: rgb(44, 34, 34);
-    border: 3px solid rgb(186, 186, 240);
-    padding: 30px;
-    margin: 20px;
-    text-align: left;
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    .statsDiv {
+      border: 3px solid rgb(24, 24, 255);
+      padding: 10px;
+      margin: 10px;
+      text-align: left;
+      width: 50%;
+      display:inline-grid;
+      justify-content: center;
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-image: url("poundSign.svg");
+    }
 
-  .info {
-    color: rgb(44, 34, 34);
-    text-align: left;
-    width: 80%;
-    padding: 30px;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    .info {
+      text-align: left;
+      width: 100%;
+      padding: 50px;
+      margin: 50px;
+      display: inline-grid;
+      position: absolute;
+      justify-content: center;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-  .parent {
-    background-color: rgb(186, 186, 240);
-      border: 3px solid rgb(186, 186, 240);
-    padding: 30px;
-    margin: 20px;
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    grid-template-columns: 1fr 1fr;
-        top: 33%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  } 
+    .justBox { 
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 5px; 
+	  	border: 1px solid #ccc; 
+	  	box-sizing: border-box; 
+	  	margin-bottom: 20px; 
+      display: flex;
+      background-color: #ECECEC;
+	  } 
+    .justBox:hover {
+      background-color: #AAABB8 ;
+    }
 
-  .textbox { 
-		width: 100%; 
-		padding: 10px; 
-		font-size: 16px; 
-		border-radius: 5px; 
-		border: 1px solid #ccc; 
-		box-sizing: border-box; 
-		margin-bottom: 20px; 
-    display: flex;
-	} 
+    div.setting {
+      display:grid;
+      grid-template-columns: max-content max-content;
+      grid-gap:10px;
+    }
+    div.setting label { 
+      text-align:right; 
+      position: relative;
+      }
+    div.setting label:after { content: " "; }
 
-  .buttonBox { 
-    background-color: rgb(29, 127, 218);
-		width: 100%; 
-		padding: 10px; 
-		font-size: 16px; 
-		border-radius: 5px; 
-		border: 1px solid #ccc; 
-		box-sizing: border-box; 
-		margin-bottom: 20px; 
-    display: flex;
-	} 
-  .buttonBox:hover {
-    background-color: rgb(72, 146, 216);
-  }
+    .buttonBox { 
+      background-color: #2C2C54;
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 8px; 
+	  	border: 5px solid #ccc; 
+	  	box-sizing: border-box; 
+	  	margin-bottom: 20px; 
+      display: flex;
+      color: #ECECEC;
+	  } 
+    .buttonBox:hover {
+      background-color: #474787;
+      border: 3px solid #000000; 
+    }
 
-  .colorBox { 
-    background-color: rgb(114, 203, 245);
-		width: 100%; 
-		padding: 10px; 
-		font-size: 16px; 
-		border-radius: 5px; 
-		border: 1px solid #ccc; 
-		margin-bottom: 20px; 
-    display: flex;
-    justify-content: center;
-	} 
-  .colorBox:hover {
-    background-color: rgb(5, 238, 238);
-  }
-	
+    .buttonBoxRed { 
+      background-color: #2C2C54;
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 8px; 
+	  	border: 5px solid #ccc; 
+	  	box-sizing: border-box; 
+	  	margin-bottom: 20px; 
+      display: flex;
+      color: #ECECEC;
+	  } 
+    .buttonBoxRed:hover {
+      color: #a52525;
+      background-color: #AAABB8;
+      border: 3px solid #a52525; 
+    }
 
-  .colorBoxRed { 
-    background-color:rgb(226, 64, 64);
-		width: 100%; 
-		padding: 10px; 
-		font-size: 16px; 
-		border-radius: 5px; 
-		border: 1px solid #ccc; 
-		margin-bottom: 20px; 
-    display: flex;
-    justify-content: center;
-	} 
+    .colorBox { 
+      background-color: rgb(255, 255, 255);
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 5px; 
+	  	margin-bottom: 20px; 
+      display: flex;
+      justify-content: center;
+	  } 
+    .colorBox:hover {
+      background-color: rgb(187, 218, 247);
+    }
+  
 
-  .colorBoxRed:hover {
-    background-color: rgb(226, 100, 100);
-  }
-  .colorBoxNav { 
-    background-color: rgb(177, 2, 2);
-		width: 100%; 
-		padding: 10px; 
-		font-size: 16px; 
-		border-radius: 5px; 
-		border: 1px solid #ccc; 
-		margin-bottom: 20px; 
-    display: flex;
-    justify-content: center;
-	} 
+    .colorBoxRed { 
+      background-color:#d67676;
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 5px; 
+	  	margin-bottom: 20px; 
+      display: flex;
+      justify-content: center;
+	  } 
+    .colorBoxRed:hover {
+      background-color: #d65454;
+    }
 
-  .colorBoxNav:hover {
-    background-color: rgb(252, 58, 58);;
-  }
+    .correctBox { 
+      background-color: rgb(145, 231, 137);
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 5px; 
+	  	margin-bottom: 20px; 
+      display: flex;
+      justify-content: center;
+	  } 
+    .correctBox:hover {
+      background-color: rgb(176, 224, 171);
+    }
 
-  .correctBox { 
-    background-color: rgb(56, 155, 47);
-		width: 100%; 
-		padding: 10px; 
-		font-size: 16px; 
-		border-radius: 5px; 
-		border: 1px solid #ccc; 
-		margin-bottom: 20px; 
-    display: flex;
-    justify-content: center;
-	} 
+    .incorrectBox { 
+      background-color: rgb(243, 117, 117);
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 5px; 
+	  	margin-bottom: 20px; 
+      display: flex;
+      justify-content: center;
+	  } 
+    .incorrectBox:hover {
+      background-color: rgb(233, 146, 146);
+    }
 
-  .correctBox:hover {
-    background-color: rgb(74, 151, 67);
-  }
+    a:hover { color:rgb(255, 8, 0); }
+    form { display: inline-block; }
+    h1, .centering, #inline { text-align: center; }
+    .message, .incorrect{ color: rgb(255, 0, 0); }
+    .correct { color: rgb(29, 226, 12); }
+    .highlight { color: #327bf0; }
 
-  .incorrectBox { 
-    background-color: rgb(56, 155, 47);
-		width: 100%; 
-		padding: 10px; 
-		font-size: 16px; 
-		border-radius: 5px; 
-		border: 1px solid #ccc; 
-		margin-bottom: 20px; 
-    display: flex;
-    justify-content: center;
-	} 
+    textarea, input[type=text] {
+      height: 50px;
+      box-sizing: border-box;
+      width: 400px !important;
+      border: 2px solid #327bf0;
+      border-radius: 4px;
+      background-color: #AAABB8;
+      font-size: 16px;
+      resize: none;
+    }
+    textarea:hover { 
+      background-color: #dec9f7;
+    }
 
-  .incorrectBox:hover {
-    background-color: rgb(74, 151, 67);
-  }
+    #collapsible-body { display: inline-block !important; }
 
-  a:hover { color:rgb(255, 8, 0); }
-  form { display: inline-block; }
-  h1, .centering, #inline { text-align: center; }
-  .message, .incorrect{ color: rgb(255, 0, 0); }
-  .correct { color: rgb(29, 226, 12); }
-  .highlight { color: #327bf0; }
+    #nav, .border, .fixed, .split-nav {
+      justify-content: center;
+    }
 
-  textarea, input[type=text] {
-    height: 50px;
-    box-sizing: border-box;
-    width: 400px !important;
-    border: 2px solid #327bf0;
-    border-radius: 4px;
-    background-color: beige;
-    font-size: 16px;
-    resize: none;
-  }
+    nav ul.inline {
+      display: inline-block !important;
+      margin-bottom: 8px !important;
+    }
 
-  #collapsible-body { display: inline-block !important; }
-      
-  #nav, .border, .fixed, .split-nav {
-    justify-content: center;
-  }
+    .bckgrnd {
+      background-color: radial-gradient(#2C2C54, #434380);
+    }
 
-  nav ul.inline {
-    display: inline-block !important;
-    margin-bottom: 8px !important;
-  }
-
-  .bckgrnd {
-    background: radial-gradient(#74d4f1, #ffffff);
-  }
-
-  div.checkbox {
-    display: flex;
-    justify-content: space-between;
-  }
+    div.checkbox {
+      display: flex;
+      justify-content: space-between;
+    }
+    input[type=checkbox] {
+      margin: 8px 0 0;
+      line-height: normal;
+      width: 20px;
+      height: 20px;
+    }
   </style>
   <title>Let's quiz</title>
   
@@ -213,24 +219,24 @@
 
     <nav class="border fixed split-nav">   
         
-        <div class="collapsible-body">
-              <form method="GET" action="/">
-                  <input class="buttonBox" type="submit" value="Main page"/>
+      <div class="collapsible-body centering">
+            <form method="GET" action="/">
+                <input class="buttonBox" type="submit" value="Main page"/>
+            </form>
+           
+            <form method="GET" action="/topics">
+                <input class="buttonBox" type="submit" value="Topics"/>
+            </form>
+           
+            <form method="GET" action="/quiz">
+                <input class="buttonBox" type="submit" value="Quiz"/>
+            </form>
+            <% if (it.user) { %>
+              <form method="POST" action="/auth/logout">
+                <input class="buttonBoxRed" type="submit" value="Log out"/>
               </form>
-             
-              <form method="GET" action="/topics">
-                  <input class="buttonBox" type="submit" value="Topics"/>
-              </form>
-             
-              <form method="GET" action="/quiz">
-                  <input class="buttonBox" type="submit" value="Quiz"/>
-              </form>
-              <% if (it.user) { %>
-                <form method="POST" action="/auth/logout">
-                  <input class="buttonBox" type="submit" value="Log out"/>
-                </form>
-              <% } %>
-        </div>
+            <% } %>
+      </div>
     </nav>
 
   <div>

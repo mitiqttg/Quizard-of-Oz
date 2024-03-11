@@ -5,9 +5,13 @@
 <% if (it.allOptions && it.allOptions.length > 0) { %>
     <% it.allOptions.forEach(option => { %>
             <% if (option.is_correct) { %>
-                <p class="correctBox"><%= option.option_text %> </p>
+                <form action="javascript:void(0);">
+                    <input class="correctBox" type="submit" value="<%= option.option_text %>"/>
+                </form>
             <% } else {%>
-                <p class="colorBoxRed"><%= option.option_text %> </p>
+                <form action="javascript:void(0);">
+                    <input class="colorBoxRed" type="submit" value="<%= option.option_text %>"/>
+                </form>
             <% } %>
             <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= option.id %>/delete">
               <input class="colorBoxRed" type="submit" value="Delete option"/>
@@ -16,18 +20,18 @@
     <% }); %>
 <% } else { %>
     <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/delete">
-        <input type="submit" value="Delete question"/>
+        <input type="submit" value="Delete"/>
     </form>
 <% } %> <br/>
 <form method="POST" action='/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options'>
-    <h3>Add a option below</h3>
-    <div class="checkbox">
-    <textarea name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea>
-    <div class="correctBox" style="margin-left: 5%;">
-        <label for="is_correct">Correct</label>
-        <input type="checkbox " id="is_correct" name="is_correct" />
-    </div>
+    <h3>Add option</h3>
+    <div>
+        <textarea name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea>
+        <div >
+            <label for="is_correct">Correct?</label>
+            <input type="checkbox" id="is_correct" name="is_correct" />
+        </div>
     </div> <br/>
-    <input type="submit" value="Add option"/><br/>
+    <input class="buttonBox" type="submit" value="Add"/><br/>
 </form>
 <p class="message centering"> <%= it.optionMessage ? it.optionMessage : ""%> </p>

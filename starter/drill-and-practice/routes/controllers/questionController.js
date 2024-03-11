@@ -102,8 +102,8 @@ const deleteOption = async ({ params, response }) => {
 
 export { 
     addQuestion, 
-    deleteQuestion, 
     listQuestions,
+    deleteQuestion, 
     addOption,
     listQuestionOptions,
     deleteOption

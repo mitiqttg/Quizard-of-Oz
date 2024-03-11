@@ -2,15 +2,22 @@
 
 <h1 class="highlight">Login form</h1>
 
-<form method="POST" action="/auth/login">
-  <label for="email" class="textbox">Email</label>
-  <input class="textbox" id="email" type="email" name="email" value="<%= it.email ? it.email:'' %>"/> <br/>
-  <label for="pw" class="textbox">Password</label>
-  <input class="textbox" id="pw" type="password" name="password"/> <br/>
-  <input type="submit" value="Login" />
+<form class="setting" method="POST" action="/auth/login">
+  <div class="setting">
+    <label for="email" >Email</label>
+    <input id="email" class="justBox" type="email" name="email" value="<%= it.email ? it.email:'' %>"/> 
+  </div> <br/>
+  <div class="setting">
+    <label for="pw">Password</label>
+    <input id="pw" class="justBox" type="password" name="password"/> 
+    </div> <br/>
+  <input class="buttonBox" type="submit" value="Login" />
 </form>
 <p class="message"> 
   <%= it.emailDetail ? it.emailDetail:'' %>
   <%= it.passwordDetail ? it.passwordDetail:'' %>
 </p>
-<a class="centering" href="/auth/register">No account? Register here.</a>
+
+<form method="GET" action="/auth/register">
+  <input class="colorBox centering" type="submit" value="No account? Register here."/>
+</form>

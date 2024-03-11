@@ -5,9 +5,10 @@
 <p> The correct options are: </p>
 <% if (it.correctOptions && it.correctOptions.length > 0 ) {%>
     <% it.correctOptions.forEach(option => { %>
-        <p>&#10024; <%= option.option_text %> </p> <br/>
+        <form class="correctBox" > <%= option.option_text %> </form> <br/>
     <% }) %>
 <% } %>
-<a class="centering" href="/quiz/<%= it.tId %>">
-    Next question
-</a> 
+
+<form method="GET" action="/quiz/<%= it.tId %>">
+  <input class="buttonBox" type="submit" value="Next question"/>
+</form>

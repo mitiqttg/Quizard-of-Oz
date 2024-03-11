@@ -4,15 +4,16 @@
     <h2 class="highlight centering">Question: <%= it.questionText %> </h2>
     <% if (it.answerOptions && it.answerOptions.length > 0) { %>
         <% it.answerOptions.forEach(option => { %>            
-            <form class="colorBox" method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.question_id %>/options/<%= option.id %>">
-                <input type="submit" name="verify" value="<%= option.option_text %>"/>
+            <form  method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.question_id %>/options/<%= option.id %>">
+                <input class="colorBox" type="submit" name="verify" value="<%= option.option_text %>"/>
             </form>
         <% }); %> <br/>
     <% } else { %>
-      <p>No option available for this question.</p>
-      <a class="centering" href="/quiz/<%= it.topicId %>">
-        Next question
-      </a> 
+      <p class="centering highlight">No option available for this question.</p>
+     
+      <form class="centering" method="GET" action="/quiz/<%= it.topicId %>">
+        <input class="buttonBox" type="submit" value="Next question"/>
+      </form>
     <% } %>
 <% } else { %>
   <p>No question available for this topic.</p>

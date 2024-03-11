@@ -4,8 +4,8 @@
 
 <% if (it.allTopics && it.allTopics.length > 0) { %>
     <% it.allTopics.forEach(topic => { %>
-            <form class="colorBox" method="GET" action="/quiz/<%= topic.id %>">
-                <input type="submit" value="<%= topic.name %>"/>
+            <form method="GET" action="/quiz/<%= topic.id %>">
+                <input class="colorBox centering" type="submit" value="<%= topic.name %>"/>
             </form>
             <br/>
     <% }); %>
