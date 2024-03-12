@@ -27,7 +27,7 @@ textarea, input[type=text] {
   width: 400px !important;
   border: 2px solid #a52525;
   border-radius: 4px;
-  background-color: rgb(206, 206, 189);
+  background-color: #d8d8d8;
   font-size: 16px;
   resize: none;
 }

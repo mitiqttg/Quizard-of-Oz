@@ -6,6 +6,7 @@
   <h1 class="highlight">Welcome &#9788;</h1>
 <% } %>
 
+<div class="centering">
 <h2>Current topics</h2>
 <% if (it.allTopics && it.allTopics.length > 0) { %>
   
@@ -24,6 +25,9 @@
 <% } else { %>
   <h3 class="highlight">No topic.</h3>
 <% } %>
+</div>
+
+<div class="centering">
 
 <% if (it.isAdmin) { %>
   <h2>Add topic</h2>
@@ -37,6 +41,6 @@
 <% } %>
 <p class="message centering"> <%= it.message ? it.message : "" %> </p>
 
-
+</div>
 
 

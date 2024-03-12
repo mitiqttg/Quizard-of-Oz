@@ -2,6 +2,7 @@
 
 <h1 class="highlight">Registration form</h1>
 
+<div class="centering">
 <form method="POST" action="/auth/register">
   <div class="setting">
     <label for="email" >Email</label>
@@ -12,7 +13,7 @@
     <input id="pw" class="justBox" type="password" name="password"/> <br/>
   </div> <br/>
   <input class="buttonBox" type="submit" value="Register" />
-  
+</div>
 </form>
 <p class="message"> 
   <%= it.emailDescription ? it.emailDescription : '' %>

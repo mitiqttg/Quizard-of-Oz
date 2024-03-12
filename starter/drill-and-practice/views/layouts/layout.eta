@@ -19,18 +19,18 @@
     }
 
     .statsDiv {
-      border: 3px solid rgb(24, 24, 255);
-      padding: 10px;
-      margin: 10px;
+      border: 3px solid #434380;
+      padding: 1px;
+      margin: 1px;
       text-align: left;
-      width: 50%;
+      width: 20%;
       display:inline-grid;
       justify-content: center;
       position: absolute;
       top: 52%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-image: url("poundSign.svg");
+      background-image: url("./PoundSign.svg");
     }
 
     .info {
@@ -58,9 +58,11 @@
       background-color: #ECECEC;
 	  } 
     .justBox:hover {
-      background-color: #AAABB8 ;
+      background-color: #d8d8d8 ;
     }
-
+    p.title {
+      left: 30%;
+    }
     div.setting {
       display:grid;
       grid-template-columns: max-content max-content;
@@ -219,7 +221,7 @@
 
     <nav class="border fixed split-nav">   
         
-      <div class="collapsible-body centering">
+      <div class="centering">
             <form method="GET" action="/">
                 <input class="buttonBox" type="submit" value="Main page"/>
             </form>
