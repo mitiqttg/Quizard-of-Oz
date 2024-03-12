@@ -3,17 +3,21 @@
 <% if (it.questionText && it.questionText.length > 0) { %>
     <h2 class="highlight centering">Question: <%= it.questionText %> </h2>
     <% if (it.answerOptions && it.answerOptions.length > 0) { %>
-        <% it.answerOptions.forEach(option => { %>            
+        <% it.answerOptions.forEach(option => { %>     
+            <div class="centering">       
             <form  method="POST" action="/quiz/<%= it.topicId %>/questions/<%= option.question_id %>/options/<%= option.id %>">
                 <input class="colorBox" type="submit" name="verify" value="<%= option.option_text %>"/>
             </form>
+            </div>
         <% }); %> <br/>
     <% } else { %>
       <p class="centering highlight">No option available for this question.</p>
      
-      <form class="centering" method="GET" action="/quiz/<%= it.topicId %>">
+      <div class="centering">       
+      <form method="GET" action="/quiz/<%= it.topicId %>">
         <input class="buttonBox" type="submit" value="Next question"/>
       </form>
+      </div>
     <% } %>
 <% } else { %>
   <p>No question available for this topic.</p>

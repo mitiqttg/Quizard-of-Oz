@@ -1,7 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
 <h2 class="highlight centering">Topics for quiz</h2>
-
+<div class="centering">
 <% if (it.allTopics && it.allTopics.length > 0) { %>
     <% it.allTopics.forEach(topic => { %>
             <form method="GET" action="/quiz/<%= topic.id %>">
@@ -15,3 +15,4 @@
 <% } else { %>
     <p class="centering">No available topic.</p>
 <% } %> 
+</div>

@@ -29,7 +29,7 @@ const randomQuizOfTopic = async ({ params, response, render }) => {
   if (qId < 0) {
     return render("quizTopics.eta", {
       allTopics: await quizzesService.listAvailableTopics(),
-      message: "This topic does not have any available question.",
+      message: "This topic does not have any question.",
     });
   }
   return response.redirect(`/quiz/${tId}/questions/${qId}`);

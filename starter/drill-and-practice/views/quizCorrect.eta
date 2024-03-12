@@ -5,10 +5,15 @@
 
 <% if (it.correctOptions && it.correctOptions.length > 0 ) {%>
     <% it.correctOptions.forEach(option => { %>
+    <div class="centering">
+
         <form class="correctBox" > <%= option.option_text %> </form> <br/>
+    </div>
     <% }) %>
 <% } %>
+<div class="centering">
 
 <form method="GET" action="/quiz/<%= it.tId %>">
   <input class="buttonBox" type="submit" value="Next question"/>
 </form>
+</div>

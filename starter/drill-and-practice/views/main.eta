@@ -4,7 +4,7 @@
     <p ><h1 class=" title">Practice makes perfect</h1>
      This app uses repetitive practice of input content. </br>
     <div> <strong>Quiz:</strong> you can practice with questions from topics. </div>
-    <div> <strong>Topics:</strong> you can add questions and options in available topics. </div>
+    <div> <strong>Topics:</strong> you can see and add topics, questions and options. </div>
     <div> <em> <a href="/auth/login">Log in</a> </em>No account? <em> <a href="/auth/register">Register here</a> </em> </div>
     </p>
 </div>

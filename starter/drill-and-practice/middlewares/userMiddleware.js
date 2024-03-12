@@ -1,4 +1,4 @@
-import * as userService from "../services/userService.js";
+ import * as userService from "../services/userService.js";
 
 const userMiddleware = async (context, next) => {
   const user = await context.state.session.get("user");

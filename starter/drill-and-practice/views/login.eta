@@ -1,6 +1,6 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1 class="highlight">Login form</h1>
+<h1 class="highlight">Login</h1>
 <div class="centering">
 <form method="POST" action="/auth/login">
   <div class="setting">
@@ -14,13 +14,14 @@
   <input class="buttonBox" type="submit" value="Login" />
 </form>
 </div>
-<p class="message"> 
-  <%= it.emailDetail ? it.emailDetail:'' %>
-  <%= it.passwordDetail ? it.passwordDetail:'' %>
-</p>
 
 <div class="centering">
 <form method="GET" action="/auth/register">
   <input class="colorBox centering" type="submit" value="No account? Register here."/>
 </form>
 </div>
+
+<p class="centering message"> 
+  <%= it.emailDetail ? it.emailDetail:'' %>
+  <%= it.passwordDetail ? it.passwordDetail:'' %>
+</p>
