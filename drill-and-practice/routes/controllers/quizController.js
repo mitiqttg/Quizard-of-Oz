@@ -43,9 +43,10 @@ const goQuiz = async ({ params, render }) => {
 };
 
 // List all the quiz of current topic
-const listQuizTopics = async ({ render }) => {
+const listQuizTopics = async ({ render, user }) => {
   return render("quizTopics.eta", {
     allTopics: await quizzesService.listAvailableTopics(),
+    user: user,
   });
 };
 

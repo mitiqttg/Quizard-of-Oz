@@ -11,7 +11,7 @@ const getTopicData = async ( request, user ) => {
   const body = request.body({ type: "form" });
   const params = await body.value;
   return {
-    name : params.get("name"),
+    name : params.get("name").trimEnd(),
     allTopics : await topicsService.listTopics(),
     isAdmin : await topicsService.isAdmin(user.id),
     user: user,
@@ -36,7 +36,7 @@ const addTopic = async ({ request, response, render, user }) => {
       topicData.message = "Your topic name must be unique and have at least one character";
       return render("topicsList.eta", topicData);
     } else {
-      const nameisUnique = await topicsService.uniqueName(topicData.name);
+      const nameisUnique = await topicsService.uniqueName(topicData.name).trimEnd();
       if (nameisUnique) {
         await topicsService.addTopic(user.id, topicData.name);
         return response.redirect("/topics");

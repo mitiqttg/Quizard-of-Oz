@@ -35,7 +35,7 @@
     <div class="setting">
       <label for="name" >Name</label>
       <input id="name" class="justBox" name="name" value="<%= it.errors ? it.errors.name.required : '' %>"/> 
-      <input class="buttonBox" type="submit" value="Add"/>
+      <input class="buttonBox" type="submit" value="Add" style="float: right"/>
     </div>
   </form>
 <% } %>
