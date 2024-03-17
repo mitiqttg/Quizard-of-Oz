@@ -37,28 +37,50 @@
     .info {
       text-align: left;
       width: 100%;
-      padding: 50px;
+      padding: 10px;
       margin: 50px;
       display: inline-grid;
       position: absolute;
       justify-content: center;
-      top: 20%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
       position: relative;
     }
 
+    .blankBox { 
+	  	width: 100%; 
+	  	border-radius: 0px; 
+      justify-content: center; 
+      position: relative;
+	  	box-sizing: border-box; 
+	  	margin-bottom: 20px; 
+      display: inline-block;
+      background-color: #00000;
+      position: relative;
+	  } 
+    .staticBox { 
+	  	width: 100%; 
+	  	border-radius: 0px; 
+      justify-content: center; 
+      position: relative;
+	  	box-sizing: border-box; 
+	  	margin-bottom: 20px; 
+      display: inline-block;
+      background-color: #00000;
+      position: sticky;
+	  } 
     .justBox { 
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 16px; 
-	  	border-radius: 5px; 
-	  	border: 1px solid #ccc; 
-	  	box-sizing: border-box;
+	  	border-radius: 8px; 
+	  	border: 5px solid #ccc; 
       justify-content: center; 
-      text-align: center; 
+      position: relative;
+	  	box-sizing: border-box; 
 	  	margin-bottom: 20px; 
-      display: flex;
+      display: inline-block;
       background-color: #ECECEC;
       position: relative;
 	  } 
@@ -67,17 +89,51 @@
     }
     p.title {
       left: 30%;
+      padding: 10px; 
+    }
+    div.settingLabel {
+      display:grid;
+      grid-template-columns: max-content max-content;
+      text-align: left; 
+      display: flex;
+      flex-direction: column;
+      align-items: start;
     }
     div.setting {
       display:grid;
       grid-template-columns: max-content max-content;
       grid-gap:10px;
+      text-align: right; 
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
     div.setting label { 
-      text-align:right; 
+      text-align: right; 
       position: relative;
       }
-    div.setting label:after { content: " "; }
+    div.setting label:after { 
+      justify-content: right; 
+      content: " "; 
+    }
+
+    .inlineBox { 
+      background-color: #2C2C54;
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 16px; 
+	  	border-radius: 8px; 
+      justify-content: center; 
+      position: relative;
+	  	box-sizing: border-box; 
+	  	margin-bottom: 20px; 
+      display: inline-block;
+      color: #ECECEC;
+	  } 
+    .inlineBox:hover {
+      background-color: #474787;
+      border: 3px solid #000000; 
+    }
 
     .buttonBox { 
       background-color: #2C2C54;
@@ -176,7 +232,10 @@
 
     a:hover { color:rgb(255, 8, 0); }
     form { display: inline-block; }
-    h1, .centering, #inline { text-align: center; }
+    h1, .centering, #inline { 
+    text-align: center; 
+    position: sticky;
+    }
     .message, .incorrect{ color: rgb(255, 0, 0); }
     .correct { color: rgb(29, 226, 12); }
     .highlight { color: #327bf0; }
@@ -223,17 +282,16 @@
   
 </head>  
 
-<body class="">
-
-    <nav>   
-      <div class="centering">
+<body>
+    <div>
+      <div class="centering staticBox">
             <form method="GET" action="/">
                 <input class="buttonBox" type="submit" value="Main page"/>
             </form>
            
             <form method="GET" action="/topics">
                 <input class="buttonBox" type="submit" value="Topics"/>
-            </form>
+            </form> 
            
             <form method="GET" action="/quiz">
                 <input class="buttonBox" type="submit" value="Quiz"/>
@@ -244,9 +302,7 @@
               </form>
             <% } %>
       </div> 
-      
-    </nav>
-
+    </div> 
   <div>
     <%~ it.body %>
   </div>

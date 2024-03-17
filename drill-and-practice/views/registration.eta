@@ -4,12 +4,16 @@
 
 <div class="centering">
 <form method="POST" action="/auth/register">
-  <div class="setting">
+  <div class="settingLabel">
     <label for="email" >Email</label>
+  </div> 
+  <div class="setting">
     <input id="email" class="justBox" type="email" name="email" value="<%= it.emaildetail ? it.emaildetail:'' %>"/> 
   </div> <br/>
-  <div class="setting">
+  <div class="settingLabel">
     <label for="pw">Password</label>
+  </div> 
+  <div class="setting">
     <input id="pw" class="justBox" type="password" name="password"/> <br/>
   </div> <br/>
   <input class="buttonBox" type="submit" value="Register" />

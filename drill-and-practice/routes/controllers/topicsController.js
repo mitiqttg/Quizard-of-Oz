@@ -36,7 +36,7 @@ const addTopic = async ({ request, response, render, user }) => {
       topicData.message = "Your topic name must be unique and have at least one character";
       return render("topicsList.eta", topicData);
     } else {
-      const nameisUnique = await topicsService.uniqueName(topicData.name).trimEnd();
+      const nameisUnique = await topicsService.uniqueName(topicData.name);
       if (nameisUnique) {
         await topicsService.addTopic(user.id, topicData.name);
         return response.redirect("/topics");

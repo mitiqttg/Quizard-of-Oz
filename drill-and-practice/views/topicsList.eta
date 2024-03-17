@@ -7,6 +7,20 @@
 <% } %>
 
 <div class="centering">
+
+<% if (it.isAdmin) { %>
+  <h2>Add topic</h2>
+  <form method="POST" action="/topics">
+    <div class="settingLabel">
+      <label for="pw">Name</label>
+    </div> 
+    <div class="setting">
+      <input id="name" class="justBox" name="name"/> 
+      <input class="buttonBox" type="submit" value="Add" style="float: right"/>
+    </div>
+  </form>
+<% } %>
+</br>
 <h2>Current topics</h2>
 <% if (it.allTopics && it.allTopics.length > 0) { %>
   
@@ -29,16 +43,6 @@
 
 <div class="centering">
 
-<% if (it.isAdmin) { %>
-  <h2>Add topic</h2>
-  <form method="POST" action="/topics">
-    <div class="setting">
-      <label for="name" >Name</label>
-      <input id="name" class="justBox" name="name" value="<%= it.errors ? it.errors.name.required : '' %>"/> 
-      <input class="buttonBox" type="submit" value="Add" style="float: right"/>
-    </div>
-  </form>
-<% } %>
 <p class="message centering"> <%= it.message ? it.message : "" %> </p>
 
 </div>
