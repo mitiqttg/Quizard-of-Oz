@@ -26,4 +26,3 @@ The application runs locally with Docker Compose.
 To test the application locally, you must first launch the application by docker as the above instructions.
 To run E2E tests, go to the same root as when you launch the project above, using the following command:
 ```docker-compose run --entrypoint=npx e2e-playwright playwright test```<br>
-  <img src="./pics/startTest.png" alt="E2E test" style="height: 200px; width:1000px;"/>
