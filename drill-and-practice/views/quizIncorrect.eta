@@ -6,7 +6,9 @@
 <% if (it.correctOptions && it.correctOptions.length > 0 ) {%>
     <% it.correctOptions.forEach(option => { %>
     <div class="centering">
-      <form class="correctBox" > <%= option.option_text %> </form> <br/>
+      <form>
+        <input class="correctBox centering" type="submit" value="<%= option.option_text %>"/>
+      </form>
     </div>
     <% }) %>
 <% } else { %>

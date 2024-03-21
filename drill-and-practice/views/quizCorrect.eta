@@ -1,13 +1,14 @@
 <% layout('./layouts/layout.eta') %>
 
 <h1 class="correct"> Correct! </h1> 
-<h2 class="highlight"> Question: <%= it.question %> </h2>
+<h2 class="highlight centering"> Question: <%= it.question %> </h2>
 
 <% if (it.correctOptions && it.correctOptions.length > 0 ) {%>
     <% it.correctOptions.forEach(option => { %>
     <div class="centering">
-
-        <form class="correctBox" > <%= option.option_text %> </form> <br/>
+      <form>
+          <input class="correctBox centering" type="submit" value="<%= option.option_text %>"/>
+      </form>
     </div>
     <% }) %>
 <% } %>

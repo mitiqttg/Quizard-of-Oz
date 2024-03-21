@@ -31,14 +31,19 @@
 <div class="centering">
 
 <form method="POST" action='/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options'>
-    <h3>Add option</h3>
+    <div class="settingLabel">
+      <label for="area" >Add option</label>
+    </div> 
+   
     <div>
-        <div class="checkbox">
-        <textarea class="justBox" name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea>
+        <textarea class="justBox" id="area" name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea> </br>
+        <div class="settingLabel">
             <label for="is_correct">Correct?</label>
             <input type="checkbox" id="is_correct" name="is_correct" />
-        </div>
+        </div> 
     </div>
+    </br>
+    </br>
     <input class="buttonBox" type="submit" value="Add"/><br/>
 </form>
 

@@ -17,15 +17,15 @@
     <input id="pw" class="justBox" type="password" name="password"/> <br/>
   </div> <br/>
   <input class="buttonBox" type="submit" value="Register" />
-</div>
 </form>
+</div>
   
 <div class=" centering">
-
-<form method="POST" action="/auth/login">
-  <input class="colorBox" type="submit" value="Already registered? Login here."/>
-</form>
+  <form method="POST" action="/auth/login">
+    <input class="colorBox" type="submit" value="Already registered? Login here."/>
+  </form>
 </div>
+
 <p class="centering message"> 
   <%= it.emailDescription ? it.emailDescription : '' %>
   <%= it.pwDescription ? it.pwDescription : '' %> 

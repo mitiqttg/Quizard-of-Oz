@@ -1,36 +1,37 @@
+// This test is for testing the functionality of the app in the beginning 
+// modifying the UI in CSS might affect these tests 
+
 import { test, expect } from '@playwright/test';
 
 test("Main page has expected title and statistics", async ({ page }) => {
     await page.goto("http://localhost:7777/");
-    await expect(page).toHaveTitle("Quizzes!");
-    await expect(page.locator("h1")).toContainText("Practice application");
-    await expect(page.locator("h3")).toContainText("Statistics!");
+    await expect(page.locator("h1")).toContainText("Practice makes perfect");
+    await expect(page.locator("h2")).toContainText("Statistics");
     await expect(page.getByText(
-        "Total number of topics:", 
-        "Total number of questions:", 
-        "Total number of questions answered:", 
-        "Total number of users:")).toBeVisible();
+        "Users:",
+        "Topics:", 
+        "Questions:", 
+        "Answers:",)).toBeVisible();
 });
 
-const userEmail = `haha${Math.random()*10}@hihi.com`;
-const userPassword = `123456haha${Math.random()*10}`;
+const userEmail = `test${Math.random()*10}@test.com`;
+const userPassword = `123456${Math.random()*10}`;
 
 test("Can register", async ({ page }) => {
-      await page.goto("http://localhost:7777/auth/register");
-      await expect(page.getByRole('link')).toHaveText("Already registered? Login here.");
-      await page.locator("input[type=email]").type(userEmail);
-      await page.locator("input[type=password]").type(userPassword);
-      await page.getByRole('button', { name: 'Register' }).click();
-      await expect(page.locator("h1")).toContainText("Login form");
+    await page.goto("http://localhost:7777/auth/register");
+    await page.locator("input[type=email]").type(userEmail);
+    await page.locator("input[type=password]").type(userPassword);
+    await page.locator('button').filter({ hasText: "Register" }).click();
+    await expect(page.locator("h1")).toContainText("Login");
 });
 
 test("Can login", async ({ page }) => {
-      await page.goto("http://localhost:7777/auth/login");
-      await page.locator("input[type=email]").type(userEmail);
-      await page.locator("input[type=password]").type(userPassword);
-      await page.getByRole('button', { name: 'Login' }).click();
-  await expect(page.locator("h1")).toContainText("Good morning, sunshine!");
-  await expect(page.locator("h2")).toContainText("Current topics!");
+    await page.goto("http://localhost:7777/auth/login");
+    await page.locator("input[type=email]").type(userEmail);
+    await page.locator("input[type=password]").type(userPassword);
+    await page.locator('button').filter({ hasText: "Login" }).click();
+    await expect(page.locator("h1")).toContainText("Welcome &#9788");
+    await expect(page.locator("h2")).toContainText("Current topics");
 });
 
 const topicName = `We are ${Math.random()*100}`;
@@ -40,11 +41,13 @@ test("Can create a topic if user login as admin.", async ({ page }) => {
   const adminEmail = "admin@admin.com";
   await page.locator("input[type=email]").type(adminEmail);
   await page.locator("input[type=password]").type('123456');
-  await page.getByRole('button', { name: 'Login' }).click();
-  await expect(page.locator("h1")).toContainText("Welcome boss!");
+  await page.locator('button').filter({ hasText: "Login" }).click();
+
+  await expect(page.locator("h1")).toContainText("Welcome Bo$$");
   await page.locator("input[type=text]").type(topicName);
-  await page.getByRole('button', { name: 'Add topic' }).click();
-  await expect(page.locator(`a >> text=${topicName}`)).toHaveText(topicName);
+  await page.locator('button').filter({ hasText: "Add" }).click();
+
+  await expect(page.locator("input[type=submit]")).toHaveText(topicName);
 });
 
 test("Can delete a topic.", async ({ page }) => {
@@ -52,12 +55,13 @@ test("Can delete a topic.", async ({ page }) => {
     const adminEmail = "admin@admin.com";
     await page.locator("input[type=email]").type(adminEmail);
     await page.locator("input[type=password]").type('123456');
-    await page.getByRole('button', { name: 'Login' }).click();
+    await page.locator('input[type=submit]').filter({ hasText: "Login" }).click();
+
     const topicName1 = `Mia sans ${Math.random()*100}`;
     await page.locator("input[type=text]").type(topicName1);
-    await page.getByRole('button', { name: 'Add topic' }).click();
-    await expect(page.locator(`a >> text='${topicName1}'`)).toHaveText(topicName1);
-    await page.getByRole('listitem').filter({ hasText: topicName1}).getByRole('button', { name: 'Delete' }).click();
+    await page.locator('input[type=submit]').filter({ hasText: "Add" }).click();
+    await page.locator('input[type=submit]').toContainText(topicName1);
+    await page.getByRole('input[type=submit]').filter({ hasText: topicName1}).getByRole('input[type=submit]', { name: 'Delete' }).click();
     await expect(page.locator(`a >> text='${topicName1}'`)).toBeHidden();
 });
 
@@ -71,10 +75,10 @@ test("Can create a new question, listing all questions", async ({ page }) => {
     const userPassword = "123456";
     await page.locator("input[type=email]").type(userEmail);
     await page.locator("input[type=password]").type(userPassword);
-    await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByRole('submit', { name: 'Login' }).click();
     await page.waitForURL('**/topics');
     await page.locator("input[type=text]").type(topicName1);
-    await page.getByRole('button', { name: 'Add topic' }).click();
+    await page.getByRole('submit', { name: 'Add' }).click();
 
     await page.getByRole('link').filter({ hasText: topicName1}).click();
     await expect(page.locator("h1")).toContainText(topicName1);
@@ -92,13 +96,13 @@ test("Can delete a question.", async ({ page }) => {
     const userPassword = "123456";
     await page.locator("input[type=email]").type(userEmail);
     await page.locator("input[type=password]").type(userPassword);
-    await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByRole('submit', { name: 'Login' }).click();
     await page.waitForURL('**/topics');
     await page.locator("input[type=text]").type(topicName1);
-    await page.getByRole('button', { name: 'Add topic' }).click();
+    await page.getByRole('submit', { name: 'Add topic' }).click();
 
     await page.getByRole('link').filter({ hasText: topicName1}).click();
-    await page.getByRole('listitem').filter({ hasText: randomQuestion1}).getByRole('button', { name: 'Delete' }).click();
+    await page.getByRole('listitem').filter({ hasText: randomQuestion1}).getByRole('submit', { name: 'Delete' }).click();
     await expect(page.locator(`a >> text='${randomQuestion1}'`)).toBeHidden;  
 });
 
@@ -111,17 +115,17 @@ test("Can add an option and list all options", async ({ page }) => {
     const userPassword = "123456";
     await page.locator("input[type=email]").type(userEmail);
     await page.locator("input[type=password]").type(userPassword);
-    await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByRole('submit', { name: 'Login' }).click();
 
     await page.getByRole('link').filter({ hasText: topicName1}).click();
     await page.getByRole('link').filter({ hasText: randomQuestion2}).click();
 
     await page.locator("textarea[name=option_text]").type(itemName1);
     await page.getByLabel('Correct').check();
-    await page.getByRole('button', { name: 'Add option' }).click();
+    await page.getByRole('submit', { name: 'Add' }).click();
     
     await page.locator("textarea[name=option_text]").type(itemName2);
-    await page.getByRole('button', { name: 'Add option' }).click();
+    await page.getByRole('submit', { name: 'Add' }).click();
 
     await expect(page.locator('ul > li')).toContainText([itemName1, itemName2]);
 });

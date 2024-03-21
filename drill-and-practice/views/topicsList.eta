@@ -3,7 +3,7 @@
 <% if (it.isAdmin) { %>
   <h1 class="highlight">Welcome Bo$$</h1>
 <% } else { %>
-  <h1 class="highlight">Welcome &#9788;</h1>
+  <h1 class="highlight">Welcome &#9788</h1>
 <% } %>
 
 <div class="centering">
