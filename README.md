@@ -2,7 +2,7 @@
 An application that can be used to create quizzes in topics and practicing random quizzes from the database.
 
 ![App demonstration](./drill-and-practice\views\layouts\GiFQuizzz.gif = 300x500)
-
+<img src="./drill-and-practice\views\layouts\GiFQuizzz.gif" width="100" height="100">
 
 ## Online deployment:
 The application can be found at this link: "expired link - no free storage left"
