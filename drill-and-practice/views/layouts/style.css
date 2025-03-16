@@ -50,3 +50,13 @@ div.checkbox {
   display: flex;
   justify-content: space-between;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Wendy+One&display=swap');
+
+body {
+  font-family: 'Wendy One', sans-serif;
+  background: #F7CA05;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
