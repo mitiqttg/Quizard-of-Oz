@@ -19,12 +19,12 @@
   <input class="buttonBox" type="submit" value="Register" />
 </form>
 </div>
-<p class="centering message"> 
-  <%= it.emailDescription ? it.emailDescription : '' %>
-  <%= it.pwDescription ? it.pwDescription : '' %> 
-</p>
 <div class=" centering">
   <form method="POST" action="/auth/login">
     <input class="colorBox" type="submit" value="Already registered? Login here."/>
   </form>
 </div>
+<p class="centering message"> 
+  <%= it.emailDescription ? it.emailDescription : '' %>
+  <%= it.pwDescription ? it.pwDescription : '' %> 
+</p>

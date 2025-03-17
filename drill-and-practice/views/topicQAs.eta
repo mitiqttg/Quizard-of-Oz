@@ -14,7 +14,7 @@
                 </form>
             <% } else {%>
                 <form action="javascript:void(0);">
-                    <input class="colorBoxRed" type="submit" value="<%= option.option_text %>"/>
+                    <input class="incorrectBox" type="submit" value="<%= option.option_text %>"/>
                 </form>
             <% } %>
             <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= option.id %>/delete">
@@ -28,7 +28,6 @@
     </form>
 <% } %> <br/>
 </div>
-
 <div class="centering">
     <p class="message centering"> <%= it.optionMessage ? it.optionMessage : ""%> </p>
     <form method="POST" action='/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options'>
@@ -36,7 +35,7 @@
         <label for="area" >Add option</label>
         </div> 
         <div>
-            <textarea class="justBox" id="area" name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea> </br>
+            <textarea class="justBox" id="area" name="option_text" value="<%= it.errors ? it.errors : ""%>"></textarea> </br>
             <div class="settingLabel">
                 <label for="is_correct">Correct?</label>
                 <input type="checkbox" id="is_correct" name="is_correct" />

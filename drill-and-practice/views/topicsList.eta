@@ -19,7 +19,6 @@
     </div>
   </form>
 <% } %>
-</br>
 <div class="centering">
 <p class="message centering"> <%= it.message ? it.message : "" %> </p>
 </div>
@@ -28,7 +27,7 @@
   
   <% it.allTopics.forEach(topic => { %>
       <form method="GET" action="/topics/<%= topic.id %>" >
-      <input  class="colorBox" type="submit" value=" <%= topic.name %>" />
+      <input  class="colorBox" style="max-width: 200px; overflow-wrap: break-word;" type="submit" value=" <%= topic.name %>" />
       </form>
       <% if (it.isAdmin) { %>
         <form method="POST" action="/topics/<%= topic.id %>/delete">

@@ -19,13 +19,11 @@
   <input class="buttonBox" type="submit" value="Login" />
 </form>
 </div>
-
 <div class="centering">
 <form method="GET" action="/auth/register">
   <input class="colorBox centering" type="submit" value="No account? Register here."/>
 </form>
 </div>
-
 <p class="centering message"> 
   <%= it.emailDetail ? it.emailDetail:'' %>
   <%= it.passwordDetail ? it.passwordDetail:'' %>

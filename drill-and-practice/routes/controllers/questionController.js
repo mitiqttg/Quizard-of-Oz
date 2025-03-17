@@ -8,7 +8,7 @@ const questionValidationRules = {
 };
 
 // Retrieve question data from input form
-const getQuestionData = async (request, params, user) => {
+const getQuestionData = async (request, params) => {
     const body = request.body({ type: "form" });
     const paramsBody = await body.value;
     return {
@@ -16,14 +16,12 @@ const getQuestionData = async (request, params, user) => {
         tId: params.tId,
         topicName: await questionService.topicName(params.tId),
         allQuestions: await questionService.listQuestions(params.tId),
-        isAdmin : await topicsService.isAdmin(user.id),
-        user: user,
     };
 };
 
 // List all the available questions for the current topic
-const listQuestions = async ({ render, params, request, user }) => {
-    render("topicQuestions.eta", await getQuestionData(request, params, user));
+const listQuestions = async ({ render, params, request }) => {
+    render("topicQuestions.eta", await getQuestionData(request, params));
 };
 
 // Add a new question to the current topic
@@ -60,7 +58,7 @@ const optionValidationRules = {
 };
 
 // Retrieve option data from input form
-const getOptionData = async (request, params) => {
+const getOptionData = async (request, params, user) => {
     const body = request.body({ type: "form" });
     const paramsBody = await body.value;
     return {
@@ -71,17 +69,19 @@ const getOptionData = async (request, params) => {
         topicName: await questionService.topicName(params.tId),
         allOptions: await questionService.listOptions(params.qId),
         questionText: await questionService.questionText(params.tId, params.qId),
+        user: user,
+        isAdmin : await topicsService.isAdmin(user.id),
     };
 };
 
 // List all the options for the current question
-const listQuestionOptions = async ({ params, render, request }) => {
-    return render("topicQAs.eta", await getOptionData(request, params));
+const listQuestionOptions = async ({ params, render, request, user }) => {
+    return render("topicQAs.eta", await getOptionData(request, params, user));
 };
 
 // Add an option 
-const addOption = async ({ params, response, render, request }) => {
-    const optionData = await getOptionData(request, params);
+const addOption = async ({ params, response, render, request, user }) => {
+    const optionData = await getOptionData(request, params, user);
     // Check if the option met the length requirement
     const [passes, errors] = await validasaur.validate( optionData, optionValidationRules );
 

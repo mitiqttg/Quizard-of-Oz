@@ -19,7 +19,7 @@
   <% if (it.allQuestions && it.allQuestions.length > 0) { %>
     <% it.allQuestions.forEach(question => { %>
         <form method="GET" action="/topics/<%= it.tId %>/questions/<%= question.id %>">
-          <input class="colorBox" type="submit" value="<%= question.question_text %>"/>
+          <input class="colorBox" style="max-width: 300px; overflow-wrap: break-word;" type="submit" value="<%= question.question_text %>"/>
         </form>
         <form method="POST" action="/topics/<%= it.tId %>/questions/<%= question.id %>/delete">
           <input class="colorBoxRed" type="submit" value="Delete"/>
@@ -31,3 +31,9 @@
     <p class="highlight centering">No question</p>
   <% } %>
 </div>
+
+<% if (it.isAdmin) { %>
+  <form method="POST" action="/topics/<%= topic.id %>/delete">
+    <input class="colorBoxRed" type="submit" value="Delete"/>
+  </form> 
+<% } %>

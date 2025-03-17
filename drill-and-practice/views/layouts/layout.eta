@@ -84,7 +84,6 @@
       position: sticky;
       left: 22%;
       flex: 1;
-      overflow: auto;
 	  } 
     
     .justBox { 
@@ -190,10 +189,10 @@
     .buttonBoxRed:hover {
       color: #a52525;
       box-shadow: 5px 5px 30px rgb(244, 208, 195);
-      background-color:rgb(244, 200, 200);
+      background-color:rgb(237, 159, 159);
     }
     .buttonBoxTopic { 
-      background-color:rgb(100, 177, 240);
+      background-color: #474787;
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 25px; 
@@ -203,7 +202,7 @@
 	  	box-sizing: border-box; 
 	  	margin-bottom: 20px; 
       display: inline;
-      color:rgb(0, 0, 0);
+      color:rgb(255, 255, 255);
       border: 1px solidrgb(255, 255, 255); 
 	  } 
     .buttonBoxTopic:hover {
@@ -211,9 +210,7 @@
       color:rgb(0, 0, 0);
       box-shadow: 5px 5px 30px rgb(172, 183, 239);
     }
-    html, body {
-      height: 100%;
-    }
+
     .colorBox { 
       background-color: rgb(255, 255, 255);
 	  	width: 100%; 
@@ -227,10 +224,8 @@
     .colorBox:hover {
       background-color: rgb(187, 218, 247);
     }
-  
-
     .colorBoxRed { 
-      background-color:#d67676;
+      background-color:rgb(247, 142, 142);
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 16px; 
@@ -240,11 +235,11 @@
       justify-content: center;
 	  } 
     .colorBoxRed:hover {
-      background-color:rgb(237, 133, 133);
+      background-color:rgb(248, 100, 100);
     }
 
     .correctBox { 
-      background-color: rgb(145, 231, 137);
+      background-color: rgb(168, 236, 162);
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 16px; 
@@ -253,14 +248,12 @@
       display: flex;
       justify-content: center;
 	  } 
-
-
     .incorrectBox { 
-      background-color: rgb(243, 117, 117);
+      background-color:rgb(249, 190, 190);
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 16px; 
-	  	border-radius: 8px; 
+	  	border-radius: 5px; 
 	  	margin-bottom: 20px; 
       display: flex;
       justify-content: center;
@@ -345,19 +338,90 @@
       display: flex ;
       justify-content: space-between;
     }
+
     input[type=checkbox] {
       margin: 8px 0 0;
       line-height: normal;
       width: 30px;
       height: 30px;
     }
+    
+    .responsive-ordered-list {
+      --theme-color: rgb(60, 189, 240);
+      --text-color: rgb(255, 255, 255);
+      --surface-color:rgb(135, 135, 234);
+
+      display: grid;
+      justify-items: flex-start;
+      gap: 1ch;
+      grid-template-columns: repeat(auto-fit, minmax(5ch, 1fr));
+      counter-reset: responsive-ol;
+    }
+
+    .ordered-list-item {
+      display: flex;
+      gap: 1ch;
+      align-items: center;
+      border-radius: 10px;
+      padding: 1ch;
+      color: rgb(255, 255, 255);
+      background-color: rgb(135, 196, 249);
+      text-decoration: none;
+      transition: transform .1s ease-in-out;
+
+      & > p {
+        margin: 0;
+      }
+      
+      &:matches(:focus,:hover) {
+        color: rgb(255, 255, 255);
+        transform: scale(1.05);
+        background-color: rgb(157, 195, 246);
+        shadow: 0 0 1ch 0.5ch rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .list-item-counter,
+    .list-item-icon {
+      color: var(--theme-color);
+      fill: var(--theme-color);
+      
+      inline-size: 5ch;
+      block-size: 3ch;
+      flex-shrink: 0;
+      border-radius: 100vmin;
+      
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .list-item-counter {
+      background: white;
+      
+      &::before {
+        counter-increment: responsive-ol;
+        content: counter(responsive-ol);
+        font-variant-numeric: tabular-nums;
+      }
+    }
+
+    .list-item-icon {
+      background: white;
+
+      & > svg {
+        block-size: 1ch;
+        fill: var(--theme-color);
+      }
+    }
+
   </style>
   <title>Let's quiz</title>
   
 </head>  
 
-<body>
-  <div class="backgroundBox">
+<body >
+  <div class="backgroundBox" style="overflow: auto;">
     <div class="centering staticBox">
           <form method="GET" action="/">
               <input class="buttonBox" type="submit" value="Main page"/>
