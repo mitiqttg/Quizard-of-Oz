@@ -1,5 +1,6 @@
 import * as questionService from "../../services/questionService.js";
 import { validasaur } from "../../deps.js";
+import * as topicsService from "../../services/topicsService.js";
 
 // Minimum length requirements for question's text
 const questionValidationRules = {
@@ -7,7 +8,7 @@ const questionValidationRules = {
 };
 
 // Retrieve question data from input form
-const getQuestionData = async (request, params) => {
+const getQuestionData = async (request, params, user) => {
     const body = request.body({ type: "form" });
     const paramsBody = await body.value;
     return {
@@ -15,17 +16,19 @@ const getQuestionData = async (request, params) => {
         tId: params.tId,
         topicName: await questionService.topicName(params.tId),
         allQuestions: await questionService.listQuestions(params.tId),
+        isAdmin : await topicsService.isAdmin(user.id),
+        user: user,
     };
 };
 
 // List all the available questions for the current topic
-const listQuestions = async ({ render, params, request }) => {
-    render("topicQuestions.eta", await getQuestionData(request, params));
+const listQuestions = async ({ render, params, request, user }) => {
+    render("topicQuestions.eta", await getQuestionData(request, params, user));
 };
 
 // Add a new question to the current topic
 const addQuestion = async ({ request, response, render, user, params }) => {
-    const questionData = await getQuestionData(request, params);
+    const questionData = await getQuestionData(request, params, user);
     
     const [passes, errors] = await validasaur.validate(questionData, questionValidationRules,);
     // If the length requirement is not met, return a message and stay on the current page 

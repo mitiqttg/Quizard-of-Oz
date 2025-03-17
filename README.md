@@ -13,8 +13,8 @@ The application runs locally with Docker Compose.
 - To start the application, open up the terminal in the folder that
   contains the `docker-compose.yml` file, in my case, you can right click on wsd-walking-skeleton-main, 
   choose ```Open in Intergrated Terminal ```,<br> 
-  then type ```docker-compose up``` to terminal, click Enter and wait for a bit...<br>
-  Finally, go to "http://localhost:7777/" to experience the application.
+  then type ```docker-compose up``` to terminal, click Enter and wait for a long bit (usually on the first start)<br>
+  Finally, go to "http://localhost:7777/" to experience the application. You can access as admin  with the email ```admin@admin.com``` and password ```123456```. Otherwise, register as new user and login with your own credentials.
 
 - To stop the application, press `ctrl+C` (or similar) in the same terminal
   where you wrote the command ```docker-compose up```. Another option is to open up

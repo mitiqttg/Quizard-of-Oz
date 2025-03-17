@@ -1,5 +1,6 @@
 import * as quizzesService from "../../services/quizzesService.js";
 import * as questionService from "../../services/questionService.js";
+import { isAdmin } from "../../services/topicsService.js";
 
 // Pick an option
 const chooseOption = async ({ params, response, user }) => {
@@ -20,7 +21,7 @@ const chooseOption = async ({ params, response, user }) => {
 };
 
 // Choose a random quiz from the topic
-const randomQuizOfTopic = async ({ params, response, render }) => {
+const randomQuizOfTopic = async ({ params, response, render, user }) => {
   const qId = await quizzesService.randomQuestionID(params.tId);
   const tId = params.tId;
   
@@ -30,6 +31,8 @@ const randomQuizOfTopic = async ({ params, response, render }) => {
     return render("quizTopics.eta", {
       allTopics: await quizzesService.listAvailableTopics(),
       message: "This topic does not have any question.",
+      user: user,
+      isAdmin: await isAdmin(user.id),
     });
   }
   return response.redirect(`/quiz/${tId}/questions/${qId}`);
@@ -47,6 +50,7 @@ const listQuizTopics = async ({ render, user }) => {
   return render("quizTopics.eta", {
     allTopics: await quizzesService.listAvailableTopics(),
     user: user,
+    isAdmin: await isAdmin(user.id),
   });
 };
 

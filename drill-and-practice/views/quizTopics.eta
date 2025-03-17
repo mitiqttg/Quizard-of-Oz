@@ -2,6 +2,9 @@
 
 <h2 class="highlight centering">Topics for quiz</h2>
 <div class="centering">
+    <% if (it.message) { %>
+        <p class="message centering"> <%=it.message%> </p>
+    <% } %>
 <% if (it.allTopics && it.allTopics.length > 0) { %>
     <% it.allTopics.forEach(topic => { %>
             <form method="GET" action="/quiz/<%= topic.id %>">
@@ -9,9 +12,6 @@
             </form>
             <br/>
     <% }); %>
-    <% if (it.message) { %>
-        <p class="message centering"> <%=it.message%> </p>
-    <% } %>
 <% } else { %>
     <p class="centering">No available topic.</p>
 <% } %> 

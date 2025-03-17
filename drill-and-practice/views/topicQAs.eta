@@ -1,9 +1,10 @@
 <% layout('./layouts/layout.eta') %>
 
-<h1> Topic: <a href="/topics/<%= it.topicId %>"> <%= it.topicName %> </a> </h1>
+<h1> Topic: <a href="/topics/<%= it.topicId %>"><div class="buttonBoxTopic" > <%= it.topicName %> </div> </a></h1>
 <div class="centering">
-    <h3 style="color:#327bf0;"> Questions: <%= it.questionText %> </h3>
+    <h1 style="color:#327bf0;"> Questions: <%= it.questionText %> </h1>
 </div>
+
 <div class="centering">
 <% if (it.allOptions && it.allOptions.length > 0) { %>
     <% it.allOptions.forEach(option => { %>
@@ -23,29 +24,26 @@
     <% }); %>
 <% } else { %>
     <form method="POST" action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/delete">
-        <input type="submit" value="Delete"/>
+        <input type="submit" class="colorBoxRed" value="Delete this topic"/>
     </form>
 <% } %> <br/>
 </div>
 
 <div class="centering">
-
-<form method="POST" action='/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options'>
-    <div class="settingLabel">
-      <label for="area" >Add option</label>
-    </div> 
-   
-    <div>
-        <textarea class="justBox" id="area" name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea> </br>
+    <p class="message centering"> <%= it.optionMessage ? it.optionMessage : ""%> </p>
+    <form method="POST" action='/topics/<%= it.topicId %>/questions/<%= it.questionId %>/options'>
         <div class="settingLabel">
-            <label for="is_correct">Correct?</label>
-            <input type="checkbox" id="is_correct" name="is_correct" />
+        <label for="area" >Add option</label>
         </div> 
-    </div>
-    </br>
-    </br>
-    <input class="buttonBox" type="submit" value="Add"/><br/>
-</form>
-
-<p class="message centering"> <%= it.optionMessage ? it.optionMessage : ""%> </p>
+        <div>
+            <textarea class="justBox" id="area" name="option_text" value="<%= it.errors ? it.errors :""%>"></textarea> </br>
+            <div class="settingLabel">
+                <label for="is_correct">Correct?</label>
+                <input type="checkbox" id="is_correct" name="is_correct" />
+            </div> 
+        </div>
+        </br>
+        </br>
+        <input class="buttonBox" type="submit" value="Add"/><br/>
+    </form>
 </div>

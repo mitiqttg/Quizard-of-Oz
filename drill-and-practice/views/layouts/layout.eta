@@ -17,6 +17,9 @@
       color: rgb(44, 34, 34);
       margin: 50px;
     }
+    a {
+    text-decoration: none;
+    }
 
     .statsDiv {
       border: 2px solid #434380;
@@ -81,6 +84,7 @@
       position: sticky;
       left: 22%;
       flex: 1;
+      overflow: auto;
 	  } 
     
     .justBox { 
@@ -88,17 +92,17 @@
 	  	padding: 10px; 
 	  	font-size: 16px; 
 	  	border-radius: 8px; 
-	  	border: 5px solid #ccc; 
+	  	border: 1px solid #ccc; 
       justify-content: center; 
       position: relative;
 	  	box-sizing: border-box; 
-	  	margin-bottom: 20px; 
+	  	margin-bottom: 10px; 
       display: inline-block;
-      background-color: #ECECEC;
+      background-color:rgb(240, 237, 237);
       position: relative;
 	  } 
     .justBox:hover {
-      background-color: #d8d8d8 ;
+      background-color:rgb(255, 255, 255) ;
     }
     p.title {
       left: 30%;
@@ -106,6 +110,7 @@
     }
     div.settingLabel {
       display:grid;
+      padding: 5px; 
       grid-template-columns: max-content max-content;
       text-align: left; 
       display: flex;
@@ -174,9 +179,9 @@
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 16px; 
-	  	border-radius: 8px; 
+	  	border-radius: 8px;
       position: relative;
-	  	border: 5px solid #ccc; 
+	  	border: 1px solid #ccc; 
 	  	box-sizing: border-box; 
 	  	margin-bottom: 20px; 
       display: flex;
@@ -184,8 +189,27 @@
 	  } 
     .buttonBoxRed:hover {
       color: #a52525;
-      background-color: #AAABB8;
-      border: 3px solid #a52525; 
+      box-shadow: 5px 5px 30px rgb(244, 208, 195);
+      background-color:rgb(244, 200, 200);
+    }
+    .buttonBoxTopic { 
+      background-color:rgb(100, 177, 240);
+	  	width: 100%; 
+	  	padding: 10px; 
+	  	font-size: 25px; 
+	  	border-radius: 8px;
+      position: relative;
+	  	border: 1px solid #ccc; 
+	  	box-sizing: border-box; 
+	  	margin-bottom: 20px; 
+      display: inline;
+      color:rgb(0, 0, 0);
+      border: 1px solidrgb(255, 255, 255); 
+	  } 
+    .buttonBoxTopic:hover {
+      background-color:rgb(149, 203, 248);
+      color:rgb(0, 0, 0);
+      box-shadow: 5px 5px 30px rgb(172, 183, 239);
     }
     html, body {
       height: 100%;
@@ -216,7 +240,7 @@
       justify-content: center;
 	  } 
     .colorBoxRed:hover {
-      background-color: #d65454;
+      background-color:rgb(237, 133, 133);
     }
 
     .correctBox { 
@@ -224,28 +248,23 @@
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 16px; 
-	  	border-radius: 5px; 
+	  	border-radius: 8px; 
 	  	margin-bottom: 20px; 
       display: flex;
       justify-content: center;
 	  } 
-    .correctBox:hover {
-      background-color: rgb(176, 224, 171);
-    }
+
 
     .incorrectBox { 
       background-color: rgb(243, 117, 117);
 	  	width: 100%; 
 	  	padding: 10px; 
 	  	font-size: 16px; 
-	  	border-radius: 5px; 
+	  	border-radius: 8px; 
 	  	margin-bottom: 20px; 
       display: flex;
       justify-content: center;
 	  } 
-    .incorrectBox:hover {
-      background-color: rgb(233, 146, 146);
-    }
 
     a:hover { color:rgb(255, 8, 0); }
     form { display: inline-block; }

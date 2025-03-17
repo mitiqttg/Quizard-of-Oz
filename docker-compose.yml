@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
   drill-and-practice:
     build: drill-and-practice
@@ -17,13 +15,13 @@ services:
 
   database:
     container_name: database-server-mt
-    image: postgres:14.1
+    image: postgres:14.17
     restart: "no"
     env_file:
         - project.env
 
   flyway:
-    image: flyway/flyway:9.11.0-alpine
+    image: flyway/flyway:11.4.0-alpine
     depends_on:
       - database
     volumes:
