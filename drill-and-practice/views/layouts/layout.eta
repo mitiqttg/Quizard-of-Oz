@@ -82,6 +82,7 @@
       display: block;
       background-color: #ECECEC;
       position: sticky;
+      padding-top: 20px;
       left: 22%;
       flex: 1;
 	  } 
