@@ -1,28 +1,58 @@
-## Contents
-An application that can be used to create quizzes in topics and practicing random quizzes from the database.
+# 🧩 Quizzard – Drill & Practice App  
 
-<img src="./drill-and-practice\views\layouts\gif-quizzard.gif" width="800" height="500">
+Quizzard is an application for **creating quizzes by topic** and **practicing random quizzes** from the database.  
 
-## Online deployment:
-The application can be found at this link: "expired link - no free storage left"
+---
 
-## Local deployment: Starting and shutting down
+## 🌍 Online Deployment
+⚠️ The previously deployed version is no longer available due to expired free hosting.  
 
-The application runs locally with Docker Compose.
+---
 
-- To start the application, open up the terminal in the folder that
-  contains the `docker-compose.yml` file, in my case, you can right click on wsd-walking-skeleton-main, 
-  choose ```Open in Intergrated Terminal ```,<br> 
-  then type ```docker-compose up``` to terminal, click Enter and wait for a long bit (usually on the first start)<br>
-  Finally, go to "http://localhost:7777/" to experience the application. You can access as admin  with the email ```admin@admin.com``` and password ```123456```. Otherwise, register as new user and login with your own credentials.
+## 💻 Local Deployment (with Docker Compose)
 
-- To stop the application, press `ctrl+C` (or similar) in the same terminal
-  where you wrote the command ```docker-compose up```. Another option is to open up
-  a new terminal and navigate to the folder that contains the
-  ```docker-compose.yml``` file, and then write ```docker-compose stop```.
+The application runs locally using **Docker Compose**.
 
-## E2E Tests with playwright
+### ▶️ Starting the Application
+1. Open a terminal in the folder containing the `docker-compose.yml` file  
+   (e.g., right-click `wsd-walking-skeleton-main` → *Open in Integrated Terminal*).
+2. Run:
+   ```bash
+   docker-compose up
+   ```
+   > ⏳ The first startup may take a while.
+3. Once running, open [http://localhost:7777](http://localhost:7777) in your browser.
+4. You can log in with the default admin account:  
+   - **Email:** `admin@admin.com`  
+   - **Password:** `123456`  
+   Or register as a new user and log in with your own credentials.
 
-To test the application locally, you must first launch the application by docker as the above instructions.
-To run E2E tests, go to the same root as when you launch the project above, using the following command:
-```docker-compose run --entrypoint=npx e2e-playwright playwright test```<br>
+### ⏹️ Stopping the Application
+- In the same terminal where you ran `docker-compose up`, press **`Ctrl+C`**.  
+- Alternatively, open a new terminal in the same folder and run:
+  ```bash
+  docker-compose stop
+  ```
+
+---
+
+## 🧪 End-to-End Tests (Playwright)
+
+To run E2E tests locally:
+
+1. Ensure the application is running with Docker (see above).
+2. From the project root (where `docker-compose.yml` is located), run:
+   ```bash
+   docker-compose run --entrypoint=npx e2e-playwright playwright test
+   ```
+
+---
+
+## 🎥 Demo
+
+Result preview:  
+
+<img src="./drill-and-practice/views/layouts/gif-quizzard.gif" width="800" height="500" alt="Quizzard Demo">
+
+
+✅ Enjoy! From miti with ❤️
