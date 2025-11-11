@@ -55,4 +55,5 @@ Result preview:
 <img src="./drill-and-practice/views/layouts/gif-quizzard.gif" width="800" height="500" alt="Quizzard Demo">
 
 
-✅ Enjoy! From miti with ❤️
+✅ Enjoy! 
+-from miti with ❤️
